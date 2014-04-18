@@ -16,7 +16,7 @@ package RectanglePacker
 		 * @return 추가된 Rectangle 의 위치 및 길이 정보가 담긴 Rectangle
 		 * 
 		 */
-		public function InsertNewRect(newRect:stRect):Node
+		public function InsertNewRect(newRect:stRect):stRect
 		{
 			return AddRectToTree(_rootNode, newRect);
 		}
@@ -28,7 +28,7 @@ package RectanglePacker
 		 * @return 성공: 추가된 Rectangle의 위치과 길이 정보가 담긴 Rectangle <br/> 실패: null
 		 * @see reference  http://www.blackpawn.com/texts/lightmaps/
 		 */
-		private function AddRectToTree(dstNode:Node, newRect:stRect):Node
+		private function AddRectToTree(dstNode:Node, newRect:stRect):stRect
 		{
 			// 왼쪽 자식이 있는 지 확인하고 없으면 왼쪽으로  먼저 진행
 			if( dstNode.left != null )
@@ -46,7 +46,7 @@ package RectanglePacker
 			{
 				case stRect.SAME:
 					dstNode.isEmpty = false;														
-					return dstNode;
+					return dstNode.rect;
 					
 				case stRect.BIGGER:
 				case stRect.INTERSECT:
@@ -76,6 +76,9 @@ package RectanglePacker
 			return AddRectToTree(dstNode.left, newRect);
 		}
 		
+		/**
+		 * 알고리즘에 사용한 트리 해제
+		 */
 		public function Clean():void
 		{
 			_rootNode.Clean();

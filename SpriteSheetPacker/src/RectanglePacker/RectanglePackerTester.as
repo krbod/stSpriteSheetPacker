@@ -28,14 +28,14 @@ package RectanglePacker
 			rectanglePacker = null;
 		}
 		
-		public function DrawRect(newNode:Node):void
+		public function DrawRect(rect:stRect):void
 		{
-			var bmp:BitmapData = new BitmapData(newNode.rect.width, newNode.rect.height, false);
-			bmp.fillRect(new Rectangle(0, 0, newNode.rect.width, newNode.rect.height), getRandomColor());
+			var bmp:BitmapData = new BitmapData(rect.width, rect.height, false);
+			bmp.fillRect(new Rectangle(0, 0, rect.width, rect.height), getRandomColor());
 			
 			var bitmap:Bitmap = new Bitmap(bmp);
-			bitmap.x = newNode.rect.x;
-			bitmap.y = newNode.rect.y;
+			bitmap.x = rect.x;
+			bitmap.y = rect.y;
 			
 			addChild(bitmap);	
 		}

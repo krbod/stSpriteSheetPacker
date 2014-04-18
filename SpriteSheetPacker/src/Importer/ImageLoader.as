@@ -59,7 +59,7 @@ package Importer
 		private function LoadImagesRecursively():void
 		{
 			// 모든 파일을 다 읽었는 지 확인
-			if( _loadedImageCount == _fileList.length-1 )
+			if( _loadedImageCount == _fileList.length )
 			{
 				CleanObjects();
 				
@@ -72,6 +72,8 @@ package Importer
 			{				
 				++_loadedImageCount;
 				LoadImagesRecursively();
+				
+				return;
 			}
 			
 			// 이미지 정보 저장
@@ -179,14 +181,7 @@ package Importer
 		}
 		
 		private function CleanObjects():void
-		{
-			// bitmap data 해제
-			var loaderDispose:LoaderInfo = _loader.contentLoaderInfo;
-			if( loaderDispose.childAllowsParent && loaderDispose.content is Bitmap )
-			{
-				(loaderDispose.content as Bitmap).bitmapData.dispose();
-			}
-			
+		{			
 			// Loader 해제
 			_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, onComplete);
 			_loader.unload();
