@@ -5,9 +5,8 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
-	import Image.ImageCustomEvent;
-	
-	import Importer.ImageLoader;
+	import Image.ImageCustomEvent;	
+	import RectanglePacker.RectanglePackerTester;
 	
 	
 	public class SpriteSheetPacker extends Sprite
@@ -20,10 +19,8 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-			var imageLoader:ImageLoader = new ImageLoader();
-			imageLoader.LoadImages();
-			
-			imageLoader.addEventListener( ImageLoader.EVENT_LOAD_ALL, onAllImageLoad ); 
+			var recTest:RectanglePackerTester = new RectanglePackerTester();
+			addChild(recTest);
 		}
 		
 		public function onAllImageLoad(e:ImageCustomEvent):void

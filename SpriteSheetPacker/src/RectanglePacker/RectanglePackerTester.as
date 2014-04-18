@@ -16,19 +16,16 @@ package RectanglePacker
 		public function RectanglePackerTester()
 		{
 			super();
-			
-			var rootNode:Node = new Node();
-			rootNode.rect = new stRect(0, 0, stageWidth, stageHeight);
-			
-			var nodeManager:RectanglePacker = new RectanglePacker();
+						
+			var rectanglePacker:RectanglePacker = new RectanglePacker(stageWidth, stageHeight);
 			
 			for(var i:int = 0; i<TEST_BLOCK_COUNT; ++i)
 			{							
-				DrawRect(nodeManager.InsertNewRect(rootNode, getRandomRect()));
+				DrawRect(rectanglePacker.InsertNewRect(getRandomRect()));
 			}			
 			
-			rootNode.Clean();
-			nodeManager = null;
+			rectanglePacker.Clean();
+			rectanglePacker = null;
 		}
 		
 		public function DrawRect(newNode:Node):void
