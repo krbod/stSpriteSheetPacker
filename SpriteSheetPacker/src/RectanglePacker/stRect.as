@@ -50,6 +50,8 @@ package RectanglePacker
 			}
 		}
 		
+		/** property */
+		
 		public function get color():Number
 		{
 			return _color;
@@ -57,10 +59,7 @@ package RectanglePacker
 		public function set color(color:Number):void
 		{
 			_color = color;
-		}
-		
-		
-		/** property */
+		}		
 		
 		public function get x():int
 		{

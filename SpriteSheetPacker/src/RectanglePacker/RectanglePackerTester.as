@@ -7,11 +7,11 @@ package RectanglePacker
 	
 	public class RectanglePackerTester extends Sprite
 	{
-		public static const TEST_BLOCK_COUNT:int = 10;
+		public static const TEST_BLOCK_COUNT:int = 20;
 		public static const TEST_BLOCK_MAX_SIZE:int = 100;
 		
-		private var stageWidth:int = 1024;
-		private var stageHeight:int = 1024;
+		private var stageWidth:int = 500;
+		private var stageHeight:int = 500;
 		
 		public function RectanglePackerTester()
 		{
@@ -21,16 +21,15 @@ package RectanglePacker
 			rootNode.rect = new stRect(0, 0, stageWidth, stageHeight);
 			
 			var nodeManager:NodeManager = new NodeManager();
+			
 			for(var i:int = 0; i<TEST_BLOCK_COUNT; ++i)
 			{				
 				var newNode:Node = new Node();
 				newNode.rect = getRandomRect();
-				newNode.rect.color = getRandomColor();
-				
-				nodeManager.InsertNode(rootNode, newNode); 
-				
-				DrawRect(newNode);
+						
+				DrawRect(nodeManager.InsertNode(rootNode, newNode));
 			}
+			
 		}
 		
 		public function getRandomColor():Number
@@ -50,11 +49,13 @@ package RectanglePacker
 		public function DrawRect(newNode:Node):void
 		{
 			var bmp:BitmapData = new BitmapData(newNode.rect.width, newNode.rect.height, false);
-			bmp.fillRect(new Rectangle(newNode.rect.x, newNode.rect.y, newNode.rect.width, newNode.rect.height), newNode.rect.color);
-			var bitmap:Bitmap = new Bitmap(bmp);
-			addChild(bitmap);
+			bmp.fillRect(new Rectangle(0, 0, newNode.rect.width, newNode.rect.height), getRandomColor());
 			
-			//bmp.dispose();			
+			var bitmap:Bitmap = new Bitmap(bmp);
+			bitmap.x = newNode.rect.x;
+			bitmap.y = newNode.rect.y;
+			
+			addChild(bitmap);	
 		}
 	}
 }

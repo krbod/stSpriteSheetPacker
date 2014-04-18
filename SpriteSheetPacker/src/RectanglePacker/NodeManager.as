@@ -13,13 +13,13 @@ package RectanglePacker
 		{
 			if( dstNode.left != null )
 			{
-//				var node:Node =InsertNode(dstNode.left, newNode);
-//				if( node == null )
-//					return InsertNode(dstNode.right, newNode);
-//					
-//				return node;
+				var node:Node =InsertNode(dstNode.left, newNode);
+				if( node == null )
+					return InsertNode(dstNode.right, newNode);
+					
+				return node;
 				
-				return InsertNode(dstNode.left, newNode) || InsertNode(dstNode.right, newNode);
+//				return InsertNode(dstNode.left, newNode) || InsertNode(dstNode.right, newNode);
 			}
 			
 			if( !dstNode.isEmpty )
@@ -28,10 +28,11 @@ package RectanglePacker
 			switch( dstNode.rect.compare( newNode.rect ) )
 			{
 				case stRect.SAME:
-					dstNode.isEmpty = false;
+					dstNode.isEmpty = false;														
 					return dstNode;
 				
 				case stRect.BIGGER:
+				case stRect.INTERSECT:
 					return null;
 			}
 			
@@ -52,8 +53,7 @@ package RectanglePacker
 				dstNode.right.rect = new stRect(dstRect.x, dstRect.y + newRect.height, dstRect.width, dstRect.height - newRect.height);
 			}
 			
-			newNode = null;			
-			return null;
+			return InsertNode(dstNode.left, newNode);			
 		}
 	}
 }

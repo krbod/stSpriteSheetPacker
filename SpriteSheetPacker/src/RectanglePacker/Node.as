@@ -1,6 +1,8 @@
 package RectanglePacker
 {
-	public class Node
+	import flash.utils.ByteArray;
+
+	public class Node extends Object
 	{
 		private var _left:Node;
 		private var _right:Node;
@@ -13,6 +15,22 @@ package RectanglePacker
 			_right = null;
 			_rect = new stRect();
 			_isEmpty = true;
+		}
+		
+		public function Clean():void{
+			
+			if( !_left )
+			{
+				_left.Clean();
+				_left = null;
+			}
+			if( !_right )
+			{
+				_right.Clean();
+				_right = null;
+			}
+			
+			_rect = null;
 		}
 		
 		public function get left():Node
