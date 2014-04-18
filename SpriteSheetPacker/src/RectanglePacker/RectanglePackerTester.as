@@ -23,13 +23,24 @@ package RectanglePacker
 			var nodeManager:NodeManager = new NodeManager();
 			
 			for(var i:int = 0; i<TEST_BLOCK_COUNT; ++i)
-			{				
-				var newNode:Node = new Node();
-				newNode.rect = getRandomRect();
-						
-				DrawRect(nodeManager.InsertNode(rootNode, newNode));
-			}
+			{							
+				DrawRect(nodeManager.InsertNewRect(rootNode, getRandomRect()));
+			}			
 			
+			rootNode.Clean();
+			nodeManager = null;
+		}
+		
+		public function DrawRect(newNode:Node):void
+		{
+			var bmp:BitmapData = new BitmapData(newNode.rect.width, newNode.rect.height, false);
+			bmp.fillRect(new Rectangle(0, 0, newNode.rect.width, newNode.rect.height), getRandomColor());
+			
+			var bitmap:Bitmap = new Bitmap(bmp);
+			bitmap.x = newNode.rect.x;
+			bitmap.y = newNode.rect.y;
+			
+			addChild(bitmap);	
 		}
 		
 		public function getRandomColor():Number
@@ -44,18 +55,6 @@ package RectanglePacker
 				0, 
 				Math.min(Math.floor(1+Math.random() * TEST_BLOCK_MAX_SIZE), TEST_BLOCK_MAX_SIZE),
 				Math.min(Math.floor(1+Math.random() * TEST_BLOCK_MAX_SIZE), TEST_BLOCK_MAX_SIZE));
-		}
-		
-		public function DrawRect(newNode:Node):void
-		{
-			var bmp:BitmapData = new BitmapData(newNode.rect.width, newNode.rect.height, false);
-			bmp.fillRect(new Rectangle(0, 0, newNode.rect.width, newNode.rect.height), getRandomColor());
-			
-			var bitmap:Bitmap = new Bitmap(bmp);
-			bitmap.x = newNode.rect.x;
-			bitmap.y = newNode.rect.y;
-			
-			addChild(bitmap);	
 		}
 	}
 }

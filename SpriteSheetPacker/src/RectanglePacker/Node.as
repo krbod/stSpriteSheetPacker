@@ -1,8 +1,6 @@
 package RectanglePacker
 {
-	import flash.utils.ByteArray;
-
-	public class Node extends Object
+	public class Node
 	{
 		private var _left:Node;
 		private var _right:Node;
