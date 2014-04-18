@@ -5,6 +5,8 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
+	import Exporter.XMLExporter;
+	
 	import Image.ImageCustomEvent;
 	
 	import Importer.ImageLoader;
@@ -34,6 +36,9 @@ package
 		{
 			var spriteSheetMaker:SpriteSheetMaker = new SpriteSheetMaker();
 			var sheet:Sprite = spriteSheetMaker.MakeSpriteSheet(event.imageInfoVec);
+			
+			var xmlExporter:XMLExporter = new XMLExporter();
+			xmlExporter.Export(spriteSheetMaker.sprites);
 			
 			addChild(sheet);
 		}

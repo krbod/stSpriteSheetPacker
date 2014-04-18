@@ -102,5 +102,10 @@ package RectanglePacker
 			_rootNode = null;
 		}
 		
+		public function getSize():int
+		{
+			return canvasSize;
+		}
+		
 	}
 }

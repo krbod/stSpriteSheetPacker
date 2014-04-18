@@ -133,8 +133,8 @@ package Importer
 		 */
 		private function GetBmpDataFromBmpFile(filePath:String):void
 		{
-			var fileStream:FileStream = new FileStream();			
 			var file:File = new File(filePath);
+			var fileStream:FileStream = new FileStream();			
 			fileStream.open(file, FileMode.READ);
 			
 			var byteArray:ByteArray = new ByteArray();
