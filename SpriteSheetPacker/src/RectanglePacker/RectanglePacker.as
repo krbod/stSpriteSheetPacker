@@ -1,13 +1,16 @@
 package RectanglePacker
 {
 	public class RectanglePacker
-	{		
+	{	
 		private var _rootNode:Node;	// Packing 알고리즘 최 상위 루트 노드
 		
-		public function RectanglePacker(stageWidth:int, stageHeight:int)
+		private const INITIAL_SIZE:int = 128;
+		private var canvasSize:int = INITIAL_SIZE;
+		
+		public function RectanglePacker()
 		{			
 			_rootNode = new Node();
-			_rootNode.rect = new stRect(0, 0, stageWidth, stageHeight);
+			_rootNode.rect = new stRect(0, 0, canvasSize, canvasSize);
 		}
 		
 		/**
@@ -17,7 +20,7 @@ package RectanglePacker
 		 * 
 		 */
 		public function InsertNewRect(newRect:stRect):stRect
-		{
+		{			
 			return AddRectToTree(_rootNode, newRect);
 		}
 		
@@ -30,6 +33,9 @@ package RectanglePacker
 		 */
 		private function AddRectToTree(dstNode:Node, newRect:stRect):stRect
 		{
+			trace("[dst] width:" + dstNode.rect.width + ", height:" + dstNode.rect.height);
+			trace("[new] width:" + newRect.width + ", height:" + newRect.height);
+			
 			// 왼쪽 자식이 있는 지 확인하고 없으면 왼쪽으로  먼저 진행
 			if( dstNode.left != null )
 			{				
@@ -76,12 +82,24 @@ package RectanglePacker
 			return AddRectToTree(dstNode.left, newRect);
 		}
 		
+		public function Resize():void
+		{
+			_rootNode.Clean();
+			canvasSize *= 2;
+			
+			_rootNode = new Node();
+			_rootNode.rect = new stRect(0, 0, canvasSize, canvasSize);
+			
+			trace("current canvas size : " + canvasSize);			
+		}
+		
 		/**
 		 * 알고리즘에 사용한 트리 해제
 		 */
 		public function Clean():void
 		{
 			_rootNode.Clean();
+			_rootNode = null;
 		}
 		
 	}

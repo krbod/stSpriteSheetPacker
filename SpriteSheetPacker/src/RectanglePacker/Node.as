@@ -17,12 +17,12 @@ package RectanglePacker
 		
 		public function Clean():void{
 			
-			if( !_left )
+			if( _left != null )
 			{
 				_left.Clean();
 				_left = null;
 			}
-			if( !_right )
+			if( _right != null )
 			{
 				_right.Clean();
 				_right = null;
