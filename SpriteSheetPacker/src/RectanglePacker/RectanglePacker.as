@@ -1,6 +1,6 @@
 package RectanglePacker
 {
-	public class NodeManager
+	public class RectanglePacker
 	{		
 		/**
 		 * Insert the new rectacgle information to left or right of destNode 

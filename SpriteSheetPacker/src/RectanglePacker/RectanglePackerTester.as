@@ -20,7 +20,7 @@ package RectanglePacker
 			var rootNode:Node = new Node();
 			rootNode.rect = new stRect(0, 0, stageWidth, stageHeight);
 			
-			var nodeManager:NodeManager = new NodeManager();
+			var nodeManager:RectanglePacker = new RectanglePacker();
 			
 			for(var i:int = 0; i<TEST_BLOCK_COUNT; ++i)
 			{							
