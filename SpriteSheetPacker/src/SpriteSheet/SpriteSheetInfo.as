@@ -9,12 +9,16 @@ package SpriteSheet
 		private var _height:int;
 		
 		private var _spriteInfoVec:Vector.<SpriteInfo>;
+		
 		private var _spriteSheetSprite:Sprite;
+		private var _boundaryHandler:BoundaryHandler;
+		
 				
 		public function SpriteSheetInfo()
 		{
 			_spriteInfoVec = new Vector.<SpriteInfo>;		
 			_spriteSheetSprite = new Sprite();	
+			_boundaryHandler = new BoundaryHandler();
 		}
 		
 		public function AddSpriteInfo(spriteInfo:SpriteInfo):void
@@ -22,10 +26,20 @@ package SpriteSheet
 			_spriteInfoVec.push(spriteInfo);
 		}
 		
+		/**
+		 * 스프라이트 시트 정보에 새로운 비트맵 객 
+		 * @param bmp
+		 * 
+		 */
 		public function AddChild(bmp:Bitmap):void
 		{
-			_spriteSheetSprite.addChild(bmp);
+			var sprite:Sprite = new Sprite();
+			sprite.addChild(bmp);			
+			_spriteSheetSprite.addChild(sprite);
+			
+			_boundaryHandler.SetClickEventListener(sprite);
 		}
+
 		
 		/** Property */
 		
