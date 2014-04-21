@@ -4,7 +4,6 @@ package Exporter
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
 	
-	import Res.Resources;
 	
 	import SpriteSheet.SpriteInfo;
 	import SpriteSheet.SpriteSheetInfo;

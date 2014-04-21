@@ -10,7 +10,6 @@ package Layer
 	
 	import Importer.ImageLoader;
 	
-	import Res.Resources;
 	
 	import SpriteSheet.SpriteSheetInfo;
 	import SpriteSheet.SpriteSheetMaker;

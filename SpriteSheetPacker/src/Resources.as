@@ -1,4 +1,4 @@
-package Res
+package 
 {
 	public class Resources
 	{

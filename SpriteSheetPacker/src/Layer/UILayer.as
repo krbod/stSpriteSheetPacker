@@ -9,7 +9,6 @@ package Layer
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	
-	import Res.Resources;
 	
 	/**
 	 * Boundary 버튼을 가지고 있는 Layer 

@@ -7,7 +7,6 @@ package Exporter
 	import flash.filesystem.FileStream;
 	import flash.utils.ByteArray;
 	
-	import Res.Resources;
 	
 	import SpriteSheet.SpriteSheetInfo;
 
