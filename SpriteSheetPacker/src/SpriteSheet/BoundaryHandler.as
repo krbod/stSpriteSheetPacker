@@ -16,6 +16,7 @@ package SpriteSheet
 		public function BoundaryHandler()
 		{
 			_boundary = new MovieClip();
+		
 		}
 		
 		/**
@@ -26,6 +27,27 @@ package SpriteSheet
 		public function SetClickEventListener(sprite:Sprite):void
 		{			
 			sprite.addEventListener(MouseEvent.CLICK, OnClick);
+		}
+		
+		public function DrawAllBoundary(spriteInfoVec:Vector.<SpriteInfo>, spriteSheetSprite:Sprite):void
+		{
+			_boundary.graphics.clear();		
+			
+			var spriteCount:uint = spriteInfoVec.length;
+			for(var i:uint = 0; i<spriteCount; ++i)
+			{
+				DrawRectangle(	spriteInfoVec[i].x, 
+										spriteInfoVec[i].y, 
+										spriteInfoVec[i].x + spriteInfoVec[i].imageInfo.bmpData.width, 
+										spriteInfoVec[i].y + spriteInfoVec[i].imageInfo.bmpData.height);
+			}
+			
+			spriteSheetSprite.addChild(_boundary);
+		}
+		
+		public function EraseAllBoundary():void
+		{
+			_boundary.graphics.clear();
 		}
 		
 		/**
@@ -39,15 +61,15 @@ package SpriteSheet
 			var bmpContainer:Sprite = Sprite(event.target);			
 			var bmp:Bitmap = Bitmap(bmpContainer.getChildAt(0));
 			
+			// 이전에 그린 Boundary 를 지움
+			_boundary.graphics.clear();			
+			
 			DrawRectangle(bmp.x, bmp.y, bmp.x + bmp.width, bmp.y + bmp.height);		
 			bmpContainer.addChild(_boundary);
 		}
 		
 		private function DrawRectangle(x1:int, y1:int, x2:int, y2:int):void
-		{			
-			// 이전에 그린 Boundary 를 지움
-			_boundary.graphics.clear();			
-			
+		{						
 			// 새로운 Boundary 를 그림
 			_boundary.graphics.lineStyle(2, 0xff0000);
 			

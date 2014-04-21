@@ -4,13 +4,13 @@ package Exporter
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
 	
+	import Res.Resources;
+	
 	import SpriteSheet.SpriteInfo;
 	import SpriteSheet.SpriteSheetInfo;
 
 	public class XMLExporter
 	{
-		// XML FILE NAME
-		private const EXPORT_FILE_PATH:String = "out/atlas.xml";
 		
 		// XML NODE NAME
 		private const XML_ROOT_NODE:String = "sprite_sheet";
@@ -48,7 +48,7 @@ package Exporter
 			}
 			
 			// 파일에 XML 관련 데이터를 씀
-			var file:File = File.desktopDirectory.resolvePath(EXPORT_FILE_PATH);
+			var file:File = File.desktopDirectory.resolvePath(Resources.EXPORT_XML_FILE_PATH);
 			var fileStream:FileStream = new FileStream();
 			fileStream.open(file, FileMode.WRITE);
 			

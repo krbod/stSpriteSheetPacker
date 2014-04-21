@@ -1,12 +1,13 @@
 package Exporter
 {
-	import com.adobe.images.PNGEncoder;
 	
 	import flash.display.BitmapData;
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
 	import flash.utils.ByteArray;
+	
+	import Res.Resources;
 	
 	import SpriteSheet.SpriteSheetInfo;
 
@@ -17,7 +18,6 @@ package Exporter
 	 */
 	public class PNGExporter
 	{
-		private const EXPORT_FILE_PATH:String = "out/spritesheet.png";
 		
 		public function PNGExporter()
 		{
@@ -38,7 +38,7 @@ package Exporter
 			var bytes:ByteArray = PNGEncoder.encode(bitmapData);			
 			
 			// PNG 데이터가 있는 ByteArray 를 파일로 씀
-			var file:File = File.desktopDirectory.resolvePath(EXPORT_FILE_PATH);
+			var file:File = File.desktopDirectory.resolvePath(Resources.EXPORT_PNG_FILE_PATH);
 			var fileStream:FileStream = new FileStream();
 			fileStream.open(file, FileMode.WRITE);
 						

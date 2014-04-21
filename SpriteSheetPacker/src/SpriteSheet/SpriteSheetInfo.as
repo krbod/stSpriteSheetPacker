@@ -55,6 +55,24 @@ package SpriteSheet
 		}
 		
 		
+		/**
+		 * 스프라이트 이미지 주위에 경계선을 긋습니다. 
+		 */
+		public function DrawAllBoundary():void
+		{
+			_boundaryHandler.DrawAllBoundary(_spriteInfoVec, _spriteSheetSprite);
+		}
+
+		
+		/**
+		 * 스프라이트 이미지 주위에 있는 경계선을 지웁니다. 
+		 */
+		public function EraseAllBoundary():void
+		{
+			_boundaryHandler.EraseAllBoundary();
+		}
+		
+		
 		/** Property */
 		
 		public function get width():int
