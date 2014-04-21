@@ -17,9 +17,8 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
-	import Layer.MainLayer;
-	
-	
+	import Layer.SpriteSheetLayer;
+		
 	public class SpriteSheetPacker extends Sprite
 	{		
 		
@@ -31,8 +30,10 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-			var mainLayer:MainLayer = new MainLayer();
-			addChild(mainLayer);			
+			var spriteSheetLayer:SpriteSheetLayer = new SpriteSheetLayer();
+			addChild(spriteSheetLayer);			
+			
+			
 		}		
 	}
 }

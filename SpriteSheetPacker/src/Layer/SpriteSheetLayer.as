@@ -12,12 +12,12 @@ package Layer
 	import SpriteSheet.SpriteSheetInfo;
 	import SpriteSheet.SpriteSheetMaker;
 	
-	public class MainLayer extends Sprite
+	public class SpriteSheetLayer extends Sprite
 	{
 		private const RESOLUTION_WIDTH:int = 1024;
 		private const RESOLUTION_HEIGHT:int = 768;
 		
-		public function MainLayer()
+		public function SpriteSheetLayer()
 		{			
 			// 폴더 내 이미지를 로드 
 			var imageLoader:ImageLoader = new ImageLoader();
