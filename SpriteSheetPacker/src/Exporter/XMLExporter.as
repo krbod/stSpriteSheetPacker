@@ -5,43 +5,60 @@ package Exporter
 	import flash.filesystem.FileStream;
 	
 	import SpriteSheet.SpriteInfo;
+	import SpriteSheet.SpriteSheetInfo;
 
 	public class XMLExporter
 	{
+		// XML FILE NAME
 		private const EXPORT_FILE_PATH:String = "out/spritesheet.xml";
-		public function XMLExporter()
-		{
-		}
 		
-		public function Export(spriteInfoVec:Vector.<SpriteInfo>):Boolean
+		// XML NODE NAME
+		private const XML_ROOT_NODE:String = "sprite_sheet";
+		private const XML_NODE:String = "sprite";
+		private const XML_NODE_NAME:String = "name";
+		private const XML_NODE_X:String = "x";
+		private const XML_NODE_Y:String = "y";
+		private const XML_NODE_WIDTH:String = "width";
+		private const XML_NODE_HEIGHT:String = "height";
+		
+		/**
+		 * XML 파일로 스프라이트 정보들을 추출합니다. 
+		 * @param spriteSheetInfo 스프라이트 시트 정보 객체
+		 */
+		public function Export(spriteSheetInfo:SpriteSheetInfo):void
 		{
-			var root:String = "<sprite_sheet></sprite_sheet>";
-	
-			var rootNode:XML = XML(root);
+			var spriteInfoVec:Vector.<SpriteInfo> = spriteSheetInfo.spritesVec;
 			
+			// 루트 노드 생성
+			var rootNode:XML = XML(GetXMLNodeString(XML_ROOT_NODE, ""));
+			
+			// 스프라이트 노드 생성 및 루트 노드에 추가
 			for(var i:uint = 0; i<spriteInfoVec.length; ++i)
 			{
+				var spriteNode:XML = XML(GetXMLNodeString( XML_NODE, ""));
 				
-				var spriteString:String = "<sprite></sprite>";
-				var spriteNode:XML = XML(spriteString);
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_NAME, spriteInfoVec[i].imageInfo.fileName )));
 				
-				spriteNode.appendChild(XML("<name>" + spriteInfoVec[i].imageInfo.fileName + "</name>"));
-				
-				spriteNode.appendChild(XML("<x>" + spriteInfoVec[i].x + "</x>"));
-				spriteNode.appendChild(XML("<y>" + spriteInfoVec[i].y + "</y>"));
-				spriteNode.appendChild(XML("<width>" + spriteInfoVec[i].uvWidth + "</width>"));
-				spriteNode.appendChild(XML("<height>" + spriteInfoVec[i].uvHeight + "</height>"));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_X, spriteInfoVec[i].x )));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_Y, spriteInfoVec[i].y )));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_WIDTH, spriteInfoVec[i].uvWidth )));
+				spriteNode.appendChild(XML(GetXMLNodeString (XML_NODE_HEIGHT, spriteInfoVec[i].uvHeight )));
 				
 				rootNode.appendChild(spriteNode);
 			}
 			
+			// 파일에 XML 관련 데이터를 씀
 			var file:File = File.desktopDirectory.resolvePath(EXPORT_FILE_PATH);
 			var fileStream:FileStream = new FileStream();
 			fileStream.open(file, FileMode.WRITE);
 			
 			fileStream.writeUTFBytes(rootNode.toXMLString());
-			
-			return true;
+			fileStream.close();
+		}
+		
+		private function GetXMLNodeString(nodeName:String, value:String):String
+		{
+			return "<" + nodeName + ">" + value + "</" + nodeName + ">";
 		}
 			
 	}
