@@ -59,18 +59,15 @@ package SpriteSheet
 			
 			// 스프라이트 시트 정보 저장
 			var spriteSize:int = rectanglePacker.getSize();
-			for(var i:uint = 0; i<bitmapVec.length; ++i)
-			{
-				spriteSheetInfo.AddChild(bitmapVec[i]);
-				
-				var spriteInfo:SpriteInfo = new SpriteInfo(bitmapVec[i].x, bitmapVec[i].y, 
-																				bitmapVec[i].width/spriteSize, 
-																				bitmapVec[i].height/spriteSize, 
-																				imageInfoVec[i]);
-				spriteSheetInfo.AddSpriteInfo(spriteInfo);
-			}
+			
 			spriteSheetInfo.width = spriteSize;
 			spriteSheetInfo.height = spriteSize;
+			
+			// 스프라이트 시트에 각각 이미지에 대한 정보를 저장
+			for(var i:uint = 0; i<bitmapVec.length; ++i)
+			{
+				spriteSheetInfo.AddSprite(bitmapVec[i], imageInfoVec[i]);
+			}
 			
 			// 사용한 자원 해제
 			rectanglePacker.Clean();
