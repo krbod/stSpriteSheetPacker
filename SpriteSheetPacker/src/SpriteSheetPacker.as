@@ -54,7 +54,6 @@ package
 			// PNG 파일 추출
 			var pngExporter:PNGExporter = new PNGExporter();
 			pngExporter.Export(sheetInfo);
-			
 		}
 	}
 }

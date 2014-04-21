@@ -1,7 +1,6 @@
 package SpriteSheet
 {
 	import flash.display.Bitmap;
-	import flash.events.MouseEvent;
 	
 	import Image.ImageFileInfo;
 	
@@ -29,6 +28,9 @@ package SpriteSheet
 			var rectanglePacker:RectanglePacker = new RectanglePacker();			
 			var bitmapVec:Vector.<Bitmap> = new Vector.<Bitmap>;
 			var spriteSheetInfo:SpriteSheetInfo = new SpriteSheetInfo();
+			
+			// 각 이미지들을 넓이를 비교해 정렬
+			imageFileInfoVec.sort(SortWithSize);
 			
 			for(var i:uint = 0; i<imageFileInfoVec.length; ++i)
 			{
@@ -74,6 +76,32 @@ package SpriteSheet
 			rectanglePacker = null;
 			
 			return spriteSheetInfo;
+		}
+		
+		/**
+		 * 벡터 sort 함수에서 사용할 이미지의 넓이 비교 알고리즘 
+		 * @param lhs 비교할 이미지 객체
+		 * @param rhs 비교할 이미지 객체
+		 * @return 비교후 결과값
+		 * 
+		 */
+		public function SortWithSize(lhs:ImageFileInfo, rhs:ImageFileInfo):int
+		{
+			var size_lhs:int = lhs.bmpData.width * lhs.bmpData.height;
+			var size_rhs:int = rhs.bmpData.width * rhs.bmpData.height;
+			
+			if( size_lhs > size_rhs )
+			{
+				return -1;
+			}
+			else if( size_rhs > size_lhs )
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
 		}
 		
 	}

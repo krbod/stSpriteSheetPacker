@@ -23,6 +23,7 @@ package Importer
 		public static const EVENT_LOAD_ALL:String = "All_IMAGE_LOADED";
 		
 		private const IMAGE_PATH:String = "in";
+		
 		private const IMAGE_BMP_EXTENSION:String = "bmp";
 		private const IMAGE_JPG_EXTENSION:String = "jpg";
 		private const IMAGE_PNG_EXTENSION:String = "png";
