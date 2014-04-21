@@ -1,6 +1,6 @@
 package SpriteSheet
 {
-	import Image.ImageInfo;
+	import Image.ImageFileInfo;
 
 	/**
 	 * 스프라이트 시트에 저장될 각각의 이미지 정보를 저장
@@ -9,9 +9,9 @@ package SpriteSheet
 	{
 		private var _x:int, _y:int;
 		private var _uvWidth:Number, _uvHeight:Number;
-		private var _imageInfo:ImageInfo;
+		private var _imageInfo:ImageFileInfo;
 		
-		public function SpriteInfo(x:int, y:int, w:Number, h:Number, imageInfo:ImageInfo)
+		public function SpriteInfo(x:int, y:int, w:Number, h:Number, imageInfo:ImageFileInfo)
 		{
 			_x = x;
 			_y = y;
@@ -56,11 +56,11 @@ package SpriteSheet
 			_uvHeight = uvHeight;
 		}
 		
-		public function get imageInfo():ImageInfo
+		public function get imageInfo():ImageFileInfo
 		{
 			return _imageInfo;
 		}
-		public function set imageInfo(imageInfo:ImageInfo):void
+		public function set imageInfo(imageInfo:ImageFileInfo):void
 		{
 			_imageInfo = imageInfo;
 		}

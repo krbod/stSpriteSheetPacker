@@ -3,7 +3,7 @@ package SpriteSheet
 	import flash.display.Bitmap;
 	import flash.events.MouseEvent;
 	
-	import Image.ImageInfo;
+	import Image.ImageFileInfo;
 	
 	import RectanglePacker.RectanglePacker;
 	import RectanglePacker.stRect;
@@ -24,7 +24,7 @@ package SpriteSheet
 		 * @return 스프라이트 시트 이미지가 저장되어 있는 Sprite 객체
 		 * 
 		 */
-		public function MakeSpriteSheet(imageInfoVec:Vector.<ImageInfo>):SpriteSheetInfo
+		public function MakeSpriteSheet(imageInfoVec:Vector.<ImageFileInfo>):SpriteSheetInfo
 		{						
 			var rectanglePacker:RectanglePacker = new RectanglePacker();			
 			var bitmapVec:Vector.<Bitmap> = new Vector.<Bitmap>;

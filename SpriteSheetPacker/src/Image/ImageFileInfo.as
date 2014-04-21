@@ -3,7 +3,7 @@ package Image
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	
-	public class ImageInfo extends Sprite
+	public class ImageFileInfo extends Sprite
 	{		
 		private var _fileName:String;
 		private var _fileExtension:String;
@@ -11,7 +11,7 @@ package Image
 		
 		private var _bmpData:BitmapData;		
 		
-		public function ImageInfo()
+		public function ImageFileInfo()
 		{
 			super();
 		}
