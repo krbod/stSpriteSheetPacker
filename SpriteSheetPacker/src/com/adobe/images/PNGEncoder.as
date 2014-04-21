@@ -31,8 +31,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.adobe.images
 {
-	import flash.geom.*;
-	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.utils.ByteArray;
 	

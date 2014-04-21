@@ -1,9 +1,7 @@
 package SpriteSheet
 {
-	import flash.display.Bitmap;
-	
-	import Image.ImageFileInfo;
-	
+	import flash.display.Bitmap;	
+	import Image.ImageFileInfo;	
 	import RectanglePacker.RectanglePacker;
 	import RectanglePacker.stRect;
 
@@ -12,20 +10,17 @@ package SpriteSheet
 	 * 
 	 */
 	public class SpriteSheetMaker
-	{		
-		public function SpriteSheetMaker()
-		{
-		}
+	{				
+		private const SPACING:int = 2;	// 스프라이트 간의 여백 ( bleeding 방지 )
 		
 		/**
 		 * 스프라이트시트를 제작합니다.  
-		 * @param imageInfoVec 스프라이트 시트에 저장할 이미지 정보가 들어 있는 벡터
+		 * @param imageInfoVec 스프라이트 시트에 저장할 ImageFileInfo 벡터
 		 * @return 스프라이트 시트 이미지가 저장되어 있는 Sprite 객체
-		 * 
 		 */
 		public function MakeSpriteSheet(imageFileInfoVec:Vector.<ImageFileInfo>):SpriteSheetInfo
 		{						
-			var rectanglePacker:RectanglePacker = new RectanglePacker();			
+			var rectanglePacker:RectanglePacker = new RectanglePacker(SPACING);			
 			var bitmapVec:Vector.<Bitmap> = new Vector.<Bitmap>;
 			var spriteSheetInfo:SpriteSheetInfo = new SpriteSheetInfo();
 			
@@ -54,8 +49,8 @@ package SpriteSheet
 				
 				// BitmapData 를 통해 Bitmap 객체 생성
 				var bitmap:Bitmap = new Bitmap(imageFileInfoVec[i].bmpData);				
-				bitmap.x = rect.x;
-				bitmap.y = rect.y;
+				bitmap.x = rect.x + SPACING;
+				bitmap.y = rect.y + SPACING;
 				bitmapVec.push(bitmap);
 			}
 			
@@ -80,10 +75,9 @@ package SpriteSheet
 		
 		/**
 		 * 벡터 sort 함수에서 사용할 이미지의 넓이 비교 알고리즘 
-		 * @param lhs 비교할 이미지 객체
-		 * @param rhs 비교할 이미지 객체
+		 * @param lhs 비교할 이미지의 ImageFileInfo 객체
+		 * @param rhs 비교할 이미지의 ImageFileInfo 객체
 		 * @return 비교후 결과값
-		 * 
 		 */
 		public function SortWithSize(lhs:ImageFileInfo, rhs:ImageFileInfo):int
 		{

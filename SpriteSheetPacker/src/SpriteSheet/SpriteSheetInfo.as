@@ -5,19 +5,22 @@ package SpriteSheet
 	
 	import Image.ImageFileInfo;
 
+	/**
+	 * 출력 결과물인 스프라이트 시트에 대한 정보를 가집니다. 
+	 */
 	public class SpriteSheetInfo
 	{
 		// 스프라이트 시트 크기
 		private var _width:int;		
 		private var _height:int;
 		
-		// 스프라이트 시트 전체에 대한  Sprite 객체
+		// 스프라이트 시트 전체에 대한  Sprite Container 객체
 		private var _spriteSheetSprite:Sprite;
 		
 		// 각각 이미지에 대한 정보를 저장하고 있는 벡터
 		private var _spriteInfoVec:Vector.<SpriteInfo>;
 		
-		// 이미지를 클릭했을 경우 경계를 나타내는 객체
+		// 이미지를 클릭했을 경우 경계를 나타내기 위한 객체
 		private var _boundaryHandler:BoundaryHandler;
 		
 				
@@ -28,7 +31,12 @@ package SpriteSheet
 			_boundaryHandler = new BoundaryHandler();
 		}
 		
-		public function AddSprite(bmp:Bitmap, imageInfo:ImageFileInfo):void
+		/**
+		 * 새로운 스프라이트를 추가합니다. 
+		 * @param bmp 새롭게 추가할 이미지의 Bitmap 정보
+		 * @param imageFileInfo 새롭게 추가할 이미지의 파일 정보
+		 */
+		public function AddSprite(bmp:Bitmap, imageFileInfo:ImageFileInfo):void
 		{
 			// 스프라이트 객체를 생성해서 스프라이트 시트 Sprite 객체에 추가
 			var sprite:Sprite = new Sprite();
@@ -42,7 +50,7 @@ package SpriteSheet
 			var spriteInfo:SpriteInfo = new SpriteInfo(bmp.x, bmp.y, 
 																			bmp.width/_width, 	// uv width
 																			bmp.height/_height,  // uv height
-																			imageInfo); 
+																			imageFileInfo); 
 			_spriteInfoVec.push(spriteInfo);
 		}
 		

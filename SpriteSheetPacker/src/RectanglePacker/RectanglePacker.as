@@ -25,6 +25,9 @@ package RectanglePacker
 		 */
 		public function InsertNewRect(newRect:stRect):stRect
 		{			
+			newRect.width += _spacing * 2;	// 이미지 좌측 spacing, 우측 spacing -> *2
+			newRect.height += _spacing * 2;	// 이미지 상단 spacing, 하단 spacing -> *2
+			
 			return AddRectToTree(_rootNode, newRect);
 		}
 		
@@ -36,10 +39,7 @@ package RectanglePacker
 		 * @see reference  http://www.blackpawn.com/texts/lightmaps/
 		 */
 		private function AddRectToTree(dstNode:Node, newRect:stRect):stRect
-		{
-			trace("[dst] width:" + dstNode.rect.width + ", height:" + dstNode.rect.height);
-			trace("[new] width:" + newRect.width + ", height:" + newRect.height);
-			
+		{			
 			// 왼쪽 자식이 있는 지 확인하고 없으면 왼쪽으로  먼저 진행
 			if( dstNode.left != null )
 			{				
@@ -69,13 +69,13 @@ package RectanglePacker
 			
 			var dstRect:stRect = dstNode.rect;
 			
-			// 새로운 Rectangle 의 세로가 더 긴경우에는 공간을 수직으로 구분
+			// 새로운 Rectangle 의 세로가 더 긴경우에는 공간을 좌, 우로 구분
 			if( (dstRect.width - newRect.width) > ( dstRect.height - newRect.height ) )
 			{
 				dstNode.left.rect = new stRect(dstRect.x, dstRect.y, newRect.width, dstRect.height);
 				dstNode.right.rect = new stRect(dstRect.x + newRect.width, dstRect.y, dstRect.width - newRect.width, dstRect.height);
 			}
-			// 가로로 더 긴 Rectangle 의 경우에는 공간을 좌우로 구분
+			// 가로로 더 긴 Rectangle 의 경우에는 공간을 위, 아래로 구분
 			else
 			{
 				dstNode.left.rect = new stRect(dstRect.x, dstRect.y, dstRect.width, newRect.height);
@@ -93,8 +93,6 @@ package RectanglePacker
 			
 			_rootNode = new Node();
 			_rootNode.rect = new stRect(0, 0, _canvasSize, _canvasSize);
-			
-			trace("current canvas size : " + _canvasSize);			
 		}
 		
 		/**

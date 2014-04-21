@@ -10,7 +10,7 @@ package Exporter
 	public class XMLExporter
 	{
 		// XML FILE NAME
-		private const EXPORT_FILE_PATH:String = "out/spritesheet.xml";
+		private const EXPORT_FILE_PATH:String = "out/atlas.xml";
 		
 		// XML NODE NAME
 		private const XML_ROOT_NODE:String = "sprite_sheet";
@@ -56,6 +56,12 @@ package Exporter
 			fileStream.close();
 		}
 		
+		/**
+		 * 노드 이름과 값으로 XML String 을 생성 
+		 * @param nodeName 생성할 노드의 이름
+		 * @param value 생성할 노드의 값
+		 * @return 생성한 XML String
+		 */
 		private function GetXMLNodeString(nodeName:String, value:String):String
 		{
 			return "<" + nodeName + ">" + value + "</" + nodeName + ">";

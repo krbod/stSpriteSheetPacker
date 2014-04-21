@@ -1,14 +1,14 @@
 package RectanglePacker
 {
-
+	/**
+	 * 새롭게 정의한 Rectangle 객체 
+	 */
 	public class stRect
 	{
 		private var _x:int;
 		private var _y:int;
 		private var _width:int;
 		private var _height:int;
-		
-		private var _color:Number;
 		
 		public static const SAME:int = 0;
 		public static const INTERSECT:int = 1;
@@ -52,15 +52,6 @@ package RectanglePacker
 		}
 		
 		/** property */
-		
-		public function get color():Number
-		{
-			return _color;
-		}
-		public function set color(color:Number):void
-		{
-			_color = color;
-		}		
 		
 		public function get x():int
 		{

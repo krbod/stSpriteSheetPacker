@@ -22,7 +22,7 @@ package Importer
 	{
 		public static const EVENT_LOAD_ALL:String = "All_IMAGE_LOADED";
 		
-		private const IMAGE_PATH:String = "in";
+		private const IMAGE_PATH:String = "in";	//불러올 이미지 파일이 있는 파일 경로
 		
 		private const IMAGE_BMP_EXTENSION:String = "bmp";
 		private const IMAGE_JPG_EXTENSION:String = "jpg";
@@ -31,7 +31,8 @@ package Importer
 		private var _imageInfoVec:Vector.<ImageFileInfo>;
 		
 		private var _loader:Loader;
-		private var _loadedImageCount:int;		
+		private var _loadedImageCount:int;		// 로드한 파일 개수
+		
 		private var _fileList:Array;
 		
 		public function ImageLoader()
@@ -47,7 +48,7 @@ package Importer
 		 */
 		public function LoadImages():void
 		{			
-			var directory:File = File.applicationDirectory.resolvePath(IMAGE_PATH);					
+			var directory:File = File.applicationDirectory.resolvePath(IMAGE_PATH);
 			_fileList = directory.getDirectoryListing();
 			
 			LoadImagesRecursively();
@@ -98,6 +99,11 @@ package Importer
 			
 		}
 		
+		/**
+		 * 파일의 절대 경로에서 파일 이름을 찾습니다.
+		 * @param filePath 파일 이름을 검색할 파일의 절대 경로
+		 * @return 파일 이름
+		 */
 		private function GetFileName(filePath:String):String
 		{			
 			var startFileName:Number = filePath.lastIndexOf("\\");		// MAC
@@ -107,29 +113,43 @@ package Importer
 			return filePath.substring(startFileName+1, filePath.lastIndexOf("."));
 		}
 		
+		/**
+		 * 파일의 절대 경로에서 파일 확장자를 찾아 리턴합니다.  
+		 * @param filePath 파일 확장자를 검색할 파일의 절대경로
+		 * @return 파일 확장자명
+		 */
 		private function GetFileExtenstion(filePath:String):String
 		{
 			return filePath.substring(filePath.lastIndexOf(".")+1, filePath.length);
 		}
 		
+		/**
+		 *  파일 절대 경로로부터 파일의 상대경로를 리턴합니다.
+		 * @param filePath 파일의 절대경로
+		 * @return 파일의 상대경로
+		 */
 		private function GetFilePath(filePath:String):String
 		{
 			return IMAGE_PATH + "\\" + GetFileName(filePath) + "." + GetFileExtenstion(filePath);
 		}
 		
+		/**
+		 * 이미지 파일을 읽고, 다 읽으면 OnComplete 함수를 발생시킵니다. 
+		 * @param filePath 읽을 이미지 파일의 경로
+		 */
 		private function GetBmpData(filePath:String):void
 		{			
 			var urlRequest:URLRequest = new URLRequest(filePath);
 			_loader.load(urlRequest);
 			
-			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onComplete);
+			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, OnComplete);
 			urlRequest = null;
 		}
 		
 		/**
-		 * BMP 파일로 부터 bmpData 정보를 확인
+		 * BMP 파일로 부터 bmpData 정보를 확인<br/>
 		 * BMP 파일은 지원이 되지 않아서 외부 라이브러리 사용
-		 * @param filePath
+		 * @param filePath 읽을 BMP 파일의 경로
 		 * @see reference http://stackoverflow.com/questions/2106195/loading-bmp-and-tiff-file-in-flash-10-using-loader
 		 */
 		private function GetBmpDataFromBmpFile(filePath:String):void
@@ -156,7 +176,11 @@ package Importer
 			LoadImagesRecursively();
 		}
 	
-		private function onComplete(event:Event):void
+		/**
+		 * 이미지 파일을 다 읽었을 경우 bmpData 를 저장하고 나머지 이미지를 계속 읽음
+		 * @param event bmpData 정보가 들어있는 event 객체 
+		 */
+		private function OnComplete(event:Event):void
 		{
 			_imageInfoVec[_loadedImageCount].bmpData = Bitmap(LoaderInfo(event.target).content).bitmapData;
 			
@@ -168,7 +192,6 @@ package Importer
 		 * 입력 파일이 이미지 파일(png, jpg, bmp)인지 확인
 		 * @param filePath 파일 경로
 		 * @return true : 이미지 일경우 false : 다른 파일 일 경우
-		 * 
 		 */
 		private function IsImageFile(filePath:String):Boolean
 		{
@@ -181,10 +204,13 @@ package Importer
 			return false;
 		}
 		
+		/**
+		 * 사용한 자원 해제 
+		 */
 		private function CleanObjects():void
 		{			
 			// Loader 해제
-			_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, onComplete);
+			_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, OnComplete);
 			_loader.unload();
 			_loader = null;
 						
