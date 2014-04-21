@@ -1,4 +1,4 @@
-package Exporter
+package utils.Exporter
 {
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
@@ -6,6 +6,7 @@ package Exporter
 	
 	import SpriteSheet.SpriteInfo;
 	import SpriteSheet.SpriteSheetInfo;
+	import utils.Resources;
 
 	public class XMLExporter
 	{		

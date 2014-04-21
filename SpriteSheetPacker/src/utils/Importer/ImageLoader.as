@@ -1,4 +1,4 @@
-package Importer
+package utils.Importer
 {
 	import flash.display.Bitmap;
 	import flash.display.Loader;

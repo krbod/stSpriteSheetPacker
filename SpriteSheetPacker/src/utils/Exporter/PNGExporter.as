@@ -1,4 +1,4 @@
-package Exporter
+package utils.Exporter
 {
 	
 	import flash.display.BitmapData;
@@ -9,6 +9,7 @@ package Exporter
 	
 	
 	import SpriteSheet.SpriteSheetInfo;
+	import utils.Resources;
 
 	/**
 	 * com.adobe.images.PNGEncoder (as3corelib) 를 이용해 PNG 파일을 추출합니다.

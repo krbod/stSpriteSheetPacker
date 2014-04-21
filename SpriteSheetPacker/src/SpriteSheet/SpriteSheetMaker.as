@@ -2,8 +2,8 @@ package SpriteSheet
 {
 	import flash.display.Bitmap;	
 	import Image.ImageFileInfo;	
-	import RectanglePacker.RectanglePacker;
-	import RectanglePacker.stRect;
+	import utils.RectanglePacker.RectanglePacker;
+	import utils.RectanglePacker.stRect;
 
 	/**
 	 * 이미지 정보를 가진 벡터로부터 스프라이트 시트를 제작합니다.

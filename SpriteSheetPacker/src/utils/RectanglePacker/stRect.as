@@ -1,4 +1,4 @@
-package RectanglePacker
+package utils.RectanglePacker
 {
 	/**
 	 * 새롭게 정의한 Rectangle 객체 

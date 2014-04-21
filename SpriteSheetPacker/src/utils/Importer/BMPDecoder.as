@@ -20,7 +20,7 @@
  * governing permissions and limitations under the License. 
  */
 
-package Importer
+package utils.Importer
 {
 	import flash.display.BitmapData;
 	import flash.errors.IOError;

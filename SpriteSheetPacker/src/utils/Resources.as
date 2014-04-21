@@ -1,4 +1,4 @@
-package 
+package utils 
 {
 	public class Resources
 	{
@@ -10,7 +10,7 @@ package
 		
 		/** Images */
 		
-		public static const IMAGE_BOUNDARY:String = "Res/boundary.png";
+		public static const IMAGE_BOUNDARY:String = "res/boundary.png";
 		
 		
 		

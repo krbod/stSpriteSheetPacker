@@ -1,4 +1,4 @@
-package RectanglePacker
+package utils.RectanglePacker
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;

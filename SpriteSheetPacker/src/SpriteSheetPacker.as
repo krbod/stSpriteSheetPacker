@@ -19,6 +19,7 @@ package
 	
 	import Layer.SpriteSheetLayer;
 	import Layer.UILayer;
+	import utils.Resources;
 	
 		
 	public class SpriteSheetPacker extends Sprite

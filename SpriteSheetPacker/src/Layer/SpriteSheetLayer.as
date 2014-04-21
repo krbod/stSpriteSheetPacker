@@ -3,14 +3,15 @@ package Layer
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import Exporter.PNGExporter;
-	import Exporter.XMLExporter;
+	import utils.Exporter.PNGExporter;
+	import utils.Exporter.XMLExporter;
 	
 	import Image.ImageCustomEvent;
-	import Importer.ImageLoader;
+	import utils.Importer.ImageLoader;
 	
 	import SpriteSheet.SpriteSheetInfo;
 	import SpriteSheet.SpriteSheetMaker;
+	import utils.Resources;
 	
 	public class SpriteSheetLayer extends Sprite
 	{		
