@@ -23,8 +23,6 @@ package
 		
 		/** Layer Name */
 		
-		public static const LAYER_NAME_MAIN_LAYER:String = "MAIN_LAYER";
-		
 		public static const LAYER_NAME_SPRITE_SHEET:String = "SPRITE_SHEET_LAYER";
 		public static const LAYER_NAME_UI:String = "UI_LAYER";
 	}

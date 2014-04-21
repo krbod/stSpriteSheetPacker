@@ -7,9 +7,7 @@ package Layer
 	import Exporter.XMLExporter;
 	
 	import Image.ImageCustomEvent;
-	
 	import Importer.ImageLoader;
-	
 	
 	import SpriteSheet.SpriteSheetInfo;
 	import SpriteSheet.SpriteSheetMaker;

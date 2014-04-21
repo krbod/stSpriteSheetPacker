@@ -17,6 +17,9 @@ package Layer
 	{
 		private var _isBoundaryButtonClicked:Boolean = false;
 		
+		private const BOUNDARY_BTN_POS_X:Number = 0.85;
+		private const BOUNDARY_BTN_POS_Y:Number = 0.8;
+		
 		public function UILayer()
 		{
 			super();
@@ -42,8 +45,8 @@ package Layer
 			boundaryButton.buttonMode = true;
 			boundaryButton.addEventListener(MouseEvent.CLICK, OnBoundaryClick);	
 			
-			boundaryButton.x = Resources.RESOLUTION_WIDTH * 0.85;
-			boundaryButton.y = Resources.RESOLUTION_HEIGHT * 0.8;
+			boundaryButton.x = Resources.RESOLUTION_WIDTH * BOUNDARY_BTN_POS_X;
+			boundaryButton.y = Resources.RESOLUTION_HEIGHT * BOUNDARY_BTN_POS_Y;
 			
 			addChild(boundaryButton);
 		}
@@ -53,8 +56,7 @@ package Layer
 		 */
 		private function OnBoundaryClick(event:MouseEvent):void
 		{
-			var mainLayer:Sprite = Sprite(this.parent);
-			var spriteSheetLayer:SpriteSheetLayer = SpriteSheetLayer(mainLayer.getChildByName(Resources.LAYER_NAME_SPRITE_SHEET));
+			var spriteSheetLayer:SpriteSheetLayer = SpriteSheetLayer(Sprite(this.parent).getChildByName(Resources.LAYER_NAME_SPRITE_SHEET));
 			
 			if( _isBoundaryButtonClicked == false )
 				spriteSheetLayer.dispatchEvent(new Event(SpriteSheetLayer.EVENT_DRAW_ALL_BOUNDARY));

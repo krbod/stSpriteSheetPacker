@@ -7,7 +7,6 @@ package SpriteSheet
 
 	/**
 	 * 이미지 정보를 가진 벡터로부터 스프라이트 시트를 제작합니다.
-	 * 
 	 */
 	public class SpriteSheetMaker
 	{				
