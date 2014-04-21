@@ -4,13 +4,11 @@ package Exporter
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
 	
-	
 	import SpriteSheet.SpriteInfo;
 	import SpriteSheet.SpriteSheetInfo;
 
 	public class XMLExporter
-	{
-		
+	{		
 		// XML NODE NAME
 		private const XML_ROOT_NODE:String = "sprite_sheet";
 		private const XML_NODE:String = "sprite";
@@ -19,6 +17,7 @@ package Exporter
 		private const XML_NODE_Y:String = "y";
 		private const XML_NODE_WIDTH:String = "width";
 		private const XML_NODE_HEIGHT:String = "height";
+		private const XML_NODE_PATH:String = "path";
 		
 		/**
 		 * XML 파일로 스프라이트 정보들을 추출합니다. 
@@ -41,7 +40,8 @@ package Exporter
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_X, spriteInfoVec[i].x )));
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_Y, spriteInfoVec[i].y )));
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_WIDTH, spriteInfoVec[i].uvWidth )));
-				spriteNode.appendChild(XML(GetXMLNodeString (XML_NODE_HEIGHT, spriteInfoVec[i].uvHeight )));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_HEIGHT, spriteInfoVec[i].uvHeight )));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_PATH, spriteInfoVec[i].imageInfo.filePath )));
 				
 				rootNode.appendChild(spriteNode);
 			}

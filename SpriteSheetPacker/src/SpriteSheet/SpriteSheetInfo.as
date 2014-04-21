@@ -40,6 +40,7 @@ package SpriteSheet
 		{
 			// 스프라이트 객체를 생성해서 스프라이트 시트 Sprite 객체에 추가
 			var sprite:Sprite = new Sprite();
+			sprite.buttonMode = true;
 			sprite.addChild(bmp);
 			_spriteSheetSprite.addChild(sprite);
 			
