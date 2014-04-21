@@ -3,6 +3,10 @@ package Image
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	
+	/**
+	 * 불러온 파일 하나에 대한 정보를 담고 있습니다.
+	 * 파일 이름, 확장자, 경로 및 이미지 비트맵 데이터 정보를 포함합니다.
+	 */
 	public class ImageFileInfo extends Sprite
 	{		
 		private var _fileName:String;

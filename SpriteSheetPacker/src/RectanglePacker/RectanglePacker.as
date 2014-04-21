@@ -5,12 +5,16 @@ package RectanglePacker
 		private var _rootNode:Node;	// Packing 알고리즘 최 상위 루트 노드
 		
 		private const INITIAL_SIZE:int = 128;
-		private var canvasSize:int = INITIAL_SIZE;
+		private var _canvasSize:int = INITIAL_SIZE;
 		
-		public function RectanglePacker()
+		private var _spacing:int;
+		
+		public function RectanglePacker(spacing:int = 0)
 		{			
 			_rootNode = new Node();
-			_rootNode.rect = new stRect(0, 0, canvasSize, canvasSize);
+			_rootNode.rect = new stRect(0, 0, _canvasSize, _canvasSize);
+			
+			_spacing = spacing;
 		}
 		
 		/**
@@ -85,12 +89,12 @@ package RectanglePacker
 		public function Resize():void
 		{
 			_rootNode.Clean();
-			canvasSize *= 2;
+			_canvasSize *= 2;
 			
 			_rootNode = new Node();
-			_rootNode.rect = new stRect(0, 0, canvasSize, canvasSize);
+			_rootNode.rect = new stRect(0, 0, _canvasSize, _canvasSize);
 			
-			trace("current canvas size : " + canvasSize);			
+			trace("current canvas size : " + _canvasSize);			
 		}
 		
 		/**
@@ -102,9 +106,13 @@ package RectanglePacker
 			_rootNode = null;
 		}
 		
-		public function getSize():int
+		
+		
+		/** Property */
+		
+		public function size():int
 		{
-			return canvasSize;
+			return _canvasSize;
 		}
 		
 	}

@@ -17,7 +17,7 @@ package RectanglePacker
 		{
 			super();
 						
-			var rectanglePacker:RectanglePacker = new RectanglePacker(stageWidth, stageHeight);
+			var rectanglePacker:RectanglePacker = new RectanglePacker();
 			
 			for(var i:int = 0; i<TEST_BLOCK_COUNT; ++i)
 			{							

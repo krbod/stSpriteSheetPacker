@@ -1,5 +1,6 @@
 package RectanglePacker
 {
+
 	public class stRect
 	{
 		private var _x:int;
@@ -23,12 +24,12 @@ package RectanglePacker
 		}
 		
 		/**
-		 * 
-		 * @param rect 
-		 * @return	SAME : rect is same with the parameter one
-		 * 			 	SMALLER : parameter one is smaller
-		 * 				BIGGER : parameter one is bigger
-		 * 				INTERSECT : original rect is intersect with parameter one
+		 * 2개의 stRect 객체의 위치 및 크기를 비교합니다.
+		 * @param rect 비교할 stRect 객체
+		 * @return	SAME : 서로의 stRect 위치와 크기가 일치한 경우<br/>
+		 * 			 	SMALLER : 파라미터 stRect 가 더 작은 경우<br/>
+		 * 				BIGGER : 파라미터 stRect 가 더 큰 경우<br/>
+		 * 				INTERSECT : 서로 교차하는 경우<br/>
 		 */
 		public function compare(rect:stRect):int
 		{

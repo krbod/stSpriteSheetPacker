@@ -42,7 +42,7 @@ package Importer
 		}
 		
 		/**
-		 * 폴더내부에 있는 이미지파일들을 읽음.
+		 * 폴더 내 모든 이미지 파일들을 읽음.
 		 */
 		public function LoadImages():void
 		{			
