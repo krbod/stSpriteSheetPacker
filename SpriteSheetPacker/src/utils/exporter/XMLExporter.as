@@ -6,12 +6,15 @@ package utils.exporter
 	
 	import spriteSheet.SpriteInfo;
 	import spriteSheet.SpriteSheetInfo;
+	
 	import utils.Resources;
 
 	public class XMLExporter
 	{		
 		// XML NODE NAME
 		private const XML_ROOT_NODE:String = "sprite_sheet";
+		private const XML_SHEET_IMAGE_NODE:String = "sprite_sheet_image";
+		
 		private const XML_NODE:String = "sprite";
 		private const XML_NODE_NAME:String = "name";
 		private const XML_NODE_X:String = "x";
@@ -30,6 +33,12 @@ package utils.exporter
 			
 			// 루트 노드 생성
 			var rootNode:XML = XML(GetXMLNodeString(XML_ROOT_NODE, ""));
+			
+			var sheetImageNode:XML = XML(GetXMLNodeString(XML_SHEET_IMAGE_NODE, ""));
+			sheetImageNode.appendChild(XML(GetXMLNodeString(XML_NODE_PATH, Resources.EXPORT_PNG_FILE_PATH)));
+			sheetImageNode.appendChild(XML(GetXMLNodeString(XML_NODE_WIDTH, spriteSheetInfo.width.toString() )));
+			sheetImageNode.appendChild(XML(GetXMLNodeString(XML_NODE_HEIGHT, spriteSheetInfo.height.toString() )));
+			rootNode.appendChild(sheetImageNode);
 			
 			// 스프라이트 노드 생성 및 루트 노드에 추가
 			for(var i:uint = 0; i<spriteInfoVec.length; ++i)

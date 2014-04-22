@@ -130,7 +130,7 @@ package utils.importer
 		 */
 		private function GetFilePath(filePath:String):String
 		{
-			return IMAGE_PATH + "\\" + GetFileName(filePath) + "." + GetFileExtenstion(filePath);
+			return IMAGE_PATH + "/" + GetFileName(filePath) + "." + GetFileExtenstion(filePath);
 		}
 		
 		/**
