@@ -1,17 +1,16 @@
-package utils.rectanglePacker
+package utils.rectanglePacker.test
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
+	import utils.rectanglePacker.RectanglePacker;
+	import utils.rectanglePacker.stRect;
 	
 	public class RectanglePackerTester extends Sprite
 	{
 		public static const TEST_BLOCK_COUNT:int = 20;
 		public static const TEST_BLOCK_MAX_SIZE:int = 100;
-		
-		private var stageWidth:int = 500;
-		private var stageHeight:int = 500;
 		
 		public function RectanglePackerTester()
 		{
