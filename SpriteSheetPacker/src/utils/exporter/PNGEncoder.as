@@ -64,6 +64,7 @@ package utils.exporter
 			// Build IDAT chunk
 			var IDAT:ByteArray= new ByteArray();
 			for(var i:int=0;i < img.height;i++) {
+				trace( ( i / img.height * 100).toFixed(2) + "%");
 				// no filter
 				IDAT.writeByte(0);
 				var p:uint;
@@ -83,7 +84,12 @@ package utils.exporter
 					}
 				}
 			}
+			trace("100%");
+			
 			IDAT.compress();
+			
+			trace("success to compress");
+			
 			writeChunk(png,0x49444154,IDAT);
 			// Build IEND chunk
 			writeChunk(png,0x49454E44,null);

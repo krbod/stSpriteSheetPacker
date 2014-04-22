@@ -20,14 +20,23 @@ package layer
 		public static const EVENT_ERASE_ALL_BOUNDARY:String = "EVENT_ERASE_ALL_BOUNDARY"
 			
 		private var _sheetInfo:SpriteSheetInfo;
-		
+
 		public function SpriteSheetLayer()
+		{			
+			this.name = Resources.LAYER_NAME_SPRITE_SHEET;
+		}
+		/**
+		 * 폴더 내 이미지를 로드하고 스프라이트 시트를 만든후 출력합니다.<br/> 
+		 * 출력후에는 atlas.xml 과 spritesheet.png 파일을 생성합니다. 
+		 */
+		public function LoadImages():void
 		{			
 			// 폴더 내 이미지를 로드 
 			var imageLoader:ImageLoader = new ImageLoader();
 			imageLoader.LoadImages();			
-			imageLoader.addEventListener( ImageLoader.EVENT_LOAD_ALL, OnAllImageLoad ); 
+			imageLoader.addEventListener( ImageLoader.EVENT_LOAD_ALL, OnAllImageLoad ); 		
 			
+			// 경계를 그리는 이벤트 리스너 설정
 			addEventListener(EVENT_DRAW_ALL_BOUNDARY, OnDrawAllBoundary);
 			addEventListener(EVENT_ERASE_ALL_BOUNDARY, OnEraseAllBoundary);
 		}

@@ -34,24 +34,25 @@ package utils.exporter
 			// 루트 노드 생성
 			var rootNode:XML = XML(GetXMLNodeString(XML_ROOT_NODE, ""));
 			
+			// 스프라이트 시트 이미지 정보 추가
 			var sheetImageNode:XML = XML(GetXMLNodeString(XML_SHEET_IMAGE_NODE, ""));
 			sheetImageNode.appendChild(XML(GetXMLNodeString(XML_NODE_PATH, Resources.EXPORT_PNG_FILE_PATH)));
 			sheetImageNode.appendChild(XML(GetXMLNodeString(XML_NODE_WIDTH, spriteSheetInfo.width.toString() )));
 			sheetImageNode.appendChild(XML(GetXMLNodeString(XML_NODE_HEIGHT, spriteSheetInfo.height.toString() )));
 			rootNode.appendChild(sheetImageNode);
 			
-			// 스프라이트 노드 생성 및 루트 노드에 추가
+			// 각각의 스프라이트 정보 추가
 			for(var i:uint = 0; i<spriteInfoVec.length; ++i)
 			{
 				var spriteNode:XML = XML(GetXMLNodeString( XML_NODE, ""));
 				
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_NAME, spriteInfoVec[i].imageInfo.fileName )));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_PATH, spriteInfoVec[i].imageInfo.filePath )));
 				
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_X, spriteInfoVec[i].x.toString( ) )));
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_Y, spriteInfoVec[i].y.toString( ) )));
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_WIDTH, (spriteInfoVec[i].width / spriteSheetInfo.width).toString( ) )));
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_HEIGHT, (spriteInfoVec[i].height / spriteSheetInfo.height).toString( ) )));
-				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_PATH, spriteInfoVec[i].imageInfo.filePath )));
 				
 				rootNode.appendChild(spriteNode);
 			}

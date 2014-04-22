@@ -63,12 +63,18 @@ package spriteSheet
 			// 새로운 Boundary 를 그림
 			_boundary.graphics.lineStyle(2, 0xff0000);
 			
+			// 테두리 라인을 그림
 			_boundary.graphics.moveTo(x1, y1);			// left, top
 			
 			_boundary.graphics.lineTo(x2, y1);				// left, top -> right, top	
 			_boundary.graphics.lineTo(x2,y2);				// right, top -> right, bottom
 			_boundary.graphics.lineTo(x1,y2);				// right, bottom -> left, bottom
-			_boundary.graphics.lineTo(x1,y1);				// left, bottom -> left, top			
+			_boundary.graphics.lineTo(x1,y1);				// left, bottom -> left, top		
+			
+			// 테두리 안을 채움
+			_boundary.graphics.beginFill(0xff0000, 0.3);
+			_boundary.graphics.drawRect(x1, y1, x2-x1, y2-y1);
+			_boundary.graphics.endFill();
 		}
 	}
 }

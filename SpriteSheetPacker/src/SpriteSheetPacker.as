@@ -33,10 +33,12 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
+			// 스프라이트 시트 이미지를 출력하는 레이어 생성
 			var spriteSheetLayer:SpriteSheetLayer = new SpriteSheetLayer();
-			spriteSheetLayer.name = Resources.LAYER_NAME_SPRITE_SHEET;
+			spriteSheetLayer.LoadImages();
 			addChild(spriteSheetLayer);			
 			
+			// 경계를 그리는 버튼이 포함된 UI 레이어 생성
 			var uiLayer:UILayer = new UILayer();
 			addChild(uiLayer);
 						

@@ -20,6 +20,9 @@ package spriteSheet
 			_imageInfo = imageInfo;
 		}
 		
+		
+		/** Property */
+		
 		public function get x():int
 		{
 			return _x;

@@ -19,10 +19,6 @@ package utils.exporter
 	public class PNGExporter
 	{
 		
-		public function PNGExporter()
-		{
-		}
-		
 		/**
 		 * 스프라이트 객체를 PNG 파일로 저장합니다. 
 		 * @param sprite 스프라이트 이미지가 저장되어 있는 Sprite 오브젝트
@@ -35,7 +31,8 @@ package utils.exporter
 			bitmapData.draw(spriteSheetInfo.spriteSheetImage);
 			
 			// BitmapData 를 PNG 로 인코딩
-			var bytes:ByteArray = PNGEncoder.encode(bitmapData);			
+			var bytes:ByteArray = PNGEncoder.encode(bitmapData);
+			
 			
 			// PNG 데이터가 있는 ByteArray 를 파일로 씀
 			var file:File = File.desktopDirectory.resolvePath(Resources.EXPORT_PNG_FILE_PATH);
