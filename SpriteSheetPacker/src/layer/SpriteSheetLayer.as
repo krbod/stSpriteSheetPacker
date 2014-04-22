@@ -35,8 +35,9 @@ package layer
 		{			
 			// 폴더 내 이미지를 로드 
 			var imageLoader:ImageLoader = new ImageLoader();
-			imageLoader.LoadImages();			
-			imageLoader.addEventListener( ImageLoader.EVENT_LOAD_ALL, OnAllImageLoad ); 		
+			imageLoader.addEventListener( ImageLoader.EVENT_LOAD_ALL, OnAllImageLoad ); 	
+			
+			imageLoader.LoadImages();				
 			
 			// 경계를 그리는 이벤트 리스너 설정
 			addEventListener(EVENT_HANDLE_BOUNDARY, OnDrawAllBoundary);

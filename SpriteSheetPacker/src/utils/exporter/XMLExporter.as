@@ -23,6 +23,8 @@ package utils.exporter
 		private const XML_NODE_HEIGHT:String = "height";
 		private const XML_NODE_PATH:String = "path";
 		
+		private var _rootNode:XML;
+		
 		/**
 		 * XML 파일로 스프라이트 정보들을 추출합니다. 
 		 * @param spriteSheetInfo 스프라이트 시트 정보 객체
@@ -30,15 +32,34 @@ package utils.exporter
 		public function Export(spriteSheetInfo:SpriteSheetInfo):void
 		{			
 			// XML 데이터를 생성
-			var rootNode:XML = MakeXMLNode(spriteSheetInfo);
+			_rootNode = MakeXMLNode(spriteSheetInfo);
 						
 			// 파일에 XML 관련 데이터를 씀
 			var file:File = File.desktopDirectory.resolvePath(Resources.EXPORT_XML_FILE_PATH);
 			var fileStream:FileStream = new FileStream();
 			fileStream.open(file, FileMode.WRITE);
 						
-			fileStream.writeUTFBytes(rootNode.toXMLString());
+			fileStream.writeUTFBytes(_rootNode.toXMLString());
 			fileStream.close();
+			
+			// 사용한 자원 해제
+			fileStream = null;
+			file = null;
+			
+			ClearAllNode(_rootNode);
+		}
+		
+		/**
+		 * XML을 만들기 위해 사용한 자원 해제 
+		 * @param node XML 의 루트 노드
+		 */
+		private function ClearAllNode(node:XML):void
+		{
+			for(var i:uint=0; i<node.children().length(); ++i)
+			{
+				ClearAllNode(node.children()[i]);
+			}
+			node = null;
 		}
 		
 		/**

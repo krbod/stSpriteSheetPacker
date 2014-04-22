@@ -41,8 +41,6 @@ package
 			// UI 레이어 생성
 			var uiLayer:UILayer = new UILayer();
 			addChild(uiLayer);
-			
-			
 						
 		}		
 		
