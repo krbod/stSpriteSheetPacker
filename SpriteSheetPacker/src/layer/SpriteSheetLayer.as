@@ -43,6 +43,9 @@ package layer
 			addEventListener(EVENT_HANDLE_BOUNDARY, OnDrawAllBoundary);
 		}
 		
+		/**
+		 * 사용한 자원을 해제 합니다. 
+		 */
 		public function Clear():void
 		{
 			if( _sheetInfo != null )

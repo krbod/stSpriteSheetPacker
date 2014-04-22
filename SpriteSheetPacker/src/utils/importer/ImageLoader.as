@@ -169,6 +169,7 @@ package utils.importer
 			_imageInfoVec[_loadedImageCount].bmpData = bmpDecoder.decode(byteArray);
 						
 			bmpDecoder = null;
+			byteArray.clear();
 			byteArray = null;
 			
 			// 계속해서 폴더내 이미지들을 읽음

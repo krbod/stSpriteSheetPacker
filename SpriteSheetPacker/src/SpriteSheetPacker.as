@@ -35,13 +35,12 @@ package
 			var spriteSheetLayer:SpriteSheetLayer = new SpriteSheetLayer();
 			addChild(spriteSheetLayer);			
 			
-			// 폴더 내에 있는 이미지를 불러와 스프라이트 이미지를 생성
-			spriteSheetLayer.LoadImages();
-			
 			// UI 레이어 생성
 			var uiLayer:UILayer = new UILayer();
 			addChild(uiLayer);
-		
+						
+			// 폴더 내에 있는 이미지를 불러와 스프라이트 이미지를 생성
+			spriteSheetLayer.LoadImages();
 		}		
 		
 	}
