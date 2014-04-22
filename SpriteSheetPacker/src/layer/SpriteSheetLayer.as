@@ -16,9 +16,9 @@ package layer
 	public class SpriteSheetLayer extends Sprite
 	{		
 		// Boundary 출력 및 삭제 관련 이벤트
-		public static const EVENT_DRAW_ALL_BOUNDARY:String = "EVENT_DRAW_ALL_BOUNDARY";
-		public static const EVENT_ERASE_ALL_BOUNDARY:String = "EVENT_ERASE_ALL_BOUNDARY"
-			
+		public static const EVENT_HANDLE_BOUNDARY:String = "EVENT_HANDLE_BOUNDARY";
+		
+		// 배경 투명 블럭의 가로 세로 크기
 		private const BACKGROUND_BLOCK_SIZE:int = 15;
 			
 		private var _sheetInfo:SpriteSheetInfo;
@@ -39,8 +39,7 @@ package layer
 			imageLoader.addEventListener( ImageLoader.EVENT_LOAD_ALL, OnAllImageLoad ); 		
 			
 			// 경계를 그리는 이벤트 리스너 설정
-			addEventListener(EVENT_DRAW_ALL_BOUNDARY, OnDrawAllBoundary);
-			addEventListener(EVENT_ERASE_ALL_BOUNDARY, OnEraseAllBoundary);
+			addEventListener(EVENT_HANDLE_BOUNDARY, OnDrawAllBoundary);
 		}
 		
 		private function OnAllImageLoad(event:ImageCustomEvent):void
@@ -107,6 +106,10 @@ package layer
 		private function OnDrawAllBoundary(event:Event):void
 		{
 			_sheetInfo.DrawAllBoundary();
+			
+			// 이벤트 리스너 함수 변경			
+			removeEventListener(EVENT_HANDLE_BOUNDARY, OnDrawAllBoundary);
+			addEventListener(EVENT_HANDLE_BOUNDARY, OnEraseAllBoundary);
 		}
 		
 		/**
@@ -114,7 +117,11 @@ package layer
 		 */
 		private function OnEraseAllBoundary(event:Event):void
 		{
-			_sheetInfo.EraseAllBoundary();			
+			_sheetInfo.EraseAllBoundary();		
+			
+			// 이벤트 리스너 함수 변경
+			removeEventListener(EVENT_HANDLE_BOUNDARY, OnEraseAllBoundary);
+			addEventListener(EVENT_HANDLE_BOUNDARY, OnDrawAllBoundary);
 		}
 	}
 }

@@ -16,9 +16,7 @@ package layer
 	 * Boundary 버튼을 가지고 있는 Layer 
 	 */
 	public class UILayer extends Sprite
-	{
-		private var _isBoundaryButtonClicked:Boolean = false;
-		
+	{		
 		private const BOUNDARY_BTN_POS_X:Number = 0.85;
 		private const BOUNDARY_BTN_POS_Y:Number = 0.8;
 		
@@ -60,12 +58,7 @@ package layer
 		{
 			var spriteSheetLayer:SpriteSheetLayer = SpriteSheetLayer(Sprite(this.parent).getChildByName(Resources.LAYER_NAME_SPRITE_SHEET));
 			
-			if( _isBoundaryButtonClicked == false )
-				spriteSheetLayer.dispatchEvent(new Event(SpriteSheetLayer.EVENT_DRAW_ALL_BOUNDARY));
-			else
-				spriteSheetLayer.dispatchEvent(new Event(SpriteSheetLayer.EVENT_ERASE_ALL_BOUNDARY));
-				
-			_isBoundaryButtonClicked = !_isBoundaryButtonClicked;
+			spriteSheetLayer.dispatchEvent(new Event(SpriteSheetLayer.EVENT_HANDLE_BOUNDARY));
 		}
 		
 	}

@@ -1,6 +1,6 @@
 
 /**
- *  빌드 환경 :  Adobe AIR SDK 13.0, Window 7
+ *  빌드 환경 :  Adobe AIR SDK 13.0, Window 7 64Bit
  *  Flash Builder 4.7 사용
  * 
  *  사용한 외부 라이브러리
@@ -33,12 +33,16 @@ package
 			
 			// 스프라이트 시트 이미지를 출력하는 레이어 생성
 			var spriteSheetLayer:SpriteSheetLayer = new SpriteSheetLayer();
-			spriteSheetLayer.LoadImages();
 			addChild(spriteSheetLayer);			
 			
-			// 경계를 그리는 버튼이 포함된 UI 레이어 생성
+			// 폴더 내에 있는 이미지를 불러와 스프라이트 이미지를 생성
+			spriteSheetLayer.LoadImages();
+			
+			// UI 레이어 생성
 			var uiLayer:UILayer = new UILayer();
 			addChild(uiLayer);
+			
+			
 						
 		}		
 		

@@ -1,6 +1,5 @@
 package utils.exporter
 {
-	import flash.display.Sprite;
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
@@ -29,11 +28,9 @@ package utils.exporter
 		 * @param spriteSheetInfo 스프라이트 시트 정보 객체
 		 */
 		public function Export(spriteSheetInfo:SpriteSheetInfo):void
-		{
-			var spriteInfoVec:Vector.<SpriteInfo> = spriteSheetInfo.spritesVec;
-			
+		{			
 			// XML 데이터를 생성
-			var rootNode:XML = MakeXMLNode(spriteInfoVec, spriteSheetInfo);
+			var rootNode:XML = MakeXMLNode(spriteSheetInfo);
 						
 			// 파일에 XML 관련 데이터를 씀
 			var file:File = File.desktopDirectory.resolvePath(Resources.EXPORT_XML_FILE_PATH);
@@ -46,12 +43,11 @@ package utils.exporter
 		
 		/**
 		 * 스프라이트 이미지들에 대한 정보로 XML 데이터를 구성합니다. 
-		 * @param spriteInfoVec 스프라이트 이미지들의 정보가 포함되어 있는 벡터
-		 * @param spriteSheetInfo 스프라이트 시트 이미지 정보
+		 * @param spriteSheetInfo 스프라이트 시트 정보
 		 * @return 구성한 XML Root 노드
 		 * 
 		 */
-		private function MakeXMLNode(spriteInfoVec:Vector.<SpriteInfo>, spriteSheetInfo:SpriteSheetInfo):XML
+		private function MakeXMLNode(spriteSheetInfo:SpriteSheetInfo):XML
 		{
 			// 루트 노드 생성
 			var rootNode:XML = XML(GetXMLNodeString(XML_ROOT_NODE, ""));
@@ -64,6 +60,7 @@ package utils.exporter
 			rootNode.appendChild(sheetImageNode);
 			
 			// 각각의 스프라이트 정보 추가
+			var spriteInfoVec:Vector.<SpriteInfo> = spriteSheetInfo.spritesVec;
 			for(var i:uint = 0; i<spriteInfoVec.length; ++i)
 			{
 				var spriteNode:XML = XML(GetXMLNodeString( XML_NODE, ""));
