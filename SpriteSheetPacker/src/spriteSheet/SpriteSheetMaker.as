@@ -66,7 +66,7 @@ package spriteSheet
 			}
 			
 			// 사용한 자원 해제
-			rectanglePacker.Clean();
+			rectanglePacker.Clear();
 			rectanglePacker = null;
 			
 			return spriteSheetInfo;

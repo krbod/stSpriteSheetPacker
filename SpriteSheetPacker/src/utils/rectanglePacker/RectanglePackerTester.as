@@ -24,7 +24,7 @@ package utils.rectanglePacker
 				DrawRect(rectanglePacker.InsertNewRect(getRandomRect()));
 			}			
 			
-			rectanglePacker.Clean();
+			rectanglePacker.Clear();
 			rectanglePacker = null;
 		}
 		

@@ -38,13 +38,16 @@ package utils.exporter
 			var file:File = File.desktopDirectory.resolvePath(Resources.EXPORT_PNG_FILE_PATH);
 			var fileStream:FileStream = new FileStream();
 			fileStream.open(file, FileMode.WRITE);
-						
-			// 파일스트림 해제
-			fileStream.writeBytes(bytes);
-			fileStream.close();
 			
-			// BitmapData 해제
+			fileStream.writeBytes(bytes);
+						
+			// 자원 해제
+			fileStream.close();
 			bitmapData.dispose();
+			bytes.clear();
+			
+			file = null;
+			fileStream = null;
 		}
 	}
 }

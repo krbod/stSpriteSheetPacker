@@ -34,6 +34,7 @@ package layer
 			
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, OnComplete);
 			urlRequest = null;
+			loader = null;
 		}
 		
 		/**

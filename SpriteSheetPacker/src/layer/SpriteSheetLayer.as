@@ -66,6 +66,11 @@ package layer
 			// PNG 파일 추출
 			var pngExporter:PNGExporter = new PNGExporter();
 			pngExporter.Export(_sheetInfo);
+			
+			// 사용한 자원 해제
+			spriteSheetMaker = null;
+			xmlExporter = null;
+			pngExporter = null;
 		}
 		
 		/**

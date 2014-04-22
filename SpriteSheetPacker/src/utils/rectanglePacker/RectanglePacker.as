@@ -88,7 +88,7 @@ package utils.rectanglePacker
 		
 		public function Resize():void
 		{
-			_rootNode.Clean();
+			_rootNode.Clear();
 			_canvasSize *= 2;
 			
 			_rootNode = new Node();
@@ -98,9 +98,9 @@ package utils.rectanglePacker
 		/**
 		 * 알고리즘에 사용한 트리 해제
 		 */
-		public function Clean():void
+		public function Clear():void
 		{
-			_rootNode.Clean();
+			_rootNode.Clear();
 			_rootNode = null;
 		}
 		

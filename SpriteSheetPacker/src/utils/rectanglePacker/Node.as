@@ -15,16 +15,16 @@ package utils.rectanglePacker
 			_isEmpty = true;
 		}
 		
-		public function Clean():void{
+		public function Clear():void{
 			
 			if( _left != null )
 			{
-				_left.Clean();
+				_left.Clear();
 				_left = null;
 			}
 			if( _right != null )
 			{
-				_right.Clean();
+				_right.Clear();
 				_right = null;
 			}
 			
