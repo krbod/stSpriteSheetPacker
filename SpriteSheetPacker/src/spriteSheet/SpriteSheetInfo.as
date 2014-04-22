@@ -50,8 +50,8 @@ package spriteSheet
 			
 			// 스프라이트 정보 생성
 			var spriteInfo:SpriteInfo = new SpriteInfo(bmp.x, bmp.y, 
-																			bmp.width/_width, 	// uv width
-																			bmp.height/_height,  // uv height
+																			bmp.width, 
+																			bmp.height,  
 																			imageFileInfo); 
 			_spriteInfoVec.push(spriteInfo);
 		}

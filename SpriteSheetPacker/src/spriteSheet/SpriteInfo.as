@@ -5,18 +5,18 @@ package spriteSheet
 	/**
 	 * 스프라이트 시트에 저장될 각각의 이미지 정보를 저장
 	 */
-	public class SpriteInfo
+	public class SpriteInfo 
 	{
 		private var _x:int, _y:int;
-		private var _uvWidth:Number, _uvHeight:Number;
+		private var _width:Number, _height:Number;
 		private var _imageInfo:ImageFileInfo;
 		
 		public function SpriteInfo(x:int, y:int, w:Number, h:Number, imageInfo:ImageFileInfo)
 		{
 			_x = x;
 			_y = y;
-			_uvWidth = w;
-			_uvHeight = h;
+			_width = w;
+			_height = h;
 			_imageInfo = imageInfo;
 		}
 		
@@ -38,22 +38,22 @@ package spriteSheet
 			_y = y;
 		}
 		
-		public function get uvWidth():Number
+		public function get width():Number
 		{
-			return _uvWidth;
+			return _width;
 		}
-		public function set uvWidth(uvWidth):void
+		public function set width(uvWidth):void
 		{
-			_uvWidth = uvWidth;
+			_width = uvWidth;
 		}
 		
-		public function get uvHeight():Number
+		public function get height():Number
 		{
-			return _uvHeight;
+			return _height;
 		}
-		public function set uvHeight(uvHeight):void
+		public function set height(uvHeight):void
 		{
-			_uvHeight = uvHeight;
+			_height = uvHeight;
 		}
 		
 		public function get imageInfo():ImageFileInfo

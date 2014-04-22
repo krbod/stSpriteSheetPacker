@@ -19,6 +19,7 @@ package
 	
 	import layer.SpriteSheetLayer;
 	import layer.UILayer;
+	
 	import utils.Resources;
 	
 		
@@ -38,8 +39,8 @@ package
 			
 			var uiLayer:UILayer = new UILayer();
 			addChild(uiLayer);
-			
-			
+						
 		}		
+		
 	}
 }

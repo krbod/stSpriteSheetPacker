@@ -1,7 +1,7 @@
 package spriteSheet
 {
 	import flash.display.Bitmap;
-	import flash.display.MovieClip;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 
@@ -11,11 +11,11 @@ package spriteSheet
 	 */
 	public class BoundaryHandler
 	{
-		private var _boundary:MovieClip;		// graphics 객체를 이용해 경계를 나타내기 위한 객체
+		private var _boundary:Shape;		// graphics 객체를 이용해 경계를 나타내기 위한 객체
 		
 		public function BoundaryHandler()
 		{
-			_boundary = new MovieClip();
+			_boundary = new Shape();
 		
 		}
 		

@@ -38,10 +38,10 @@ package utils.exporter
 				
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_NAME, spriteInfoVec[i].imageInfo.fileName )));
 				
-				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_X, spriteInfoVec[i].x )));
-				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_Y, spriteInfoVec[i].y )));
-				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_WIDTH, spriteInfoVec[i].uvWidth )));
-				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_HEIGHT, spriteInfoVec[i].uvHeight )));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_X, spriteInfoVec[i].x.toString( ) )));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_Y, spriteInfoVec[i].y.toString( ) )));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_WIDTH, (spriteInfoVec[i].width / spriteSheetInfo.width).toString( ) )));
+				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_HEIGHT, (spriteInfoVec[i].height / spriteSheetInfo.height).toString( ) )));
 				spriteNode.appendChild(XML(GetXMLNodeString( XML_NODE_PATH, spriteInfoVec[i].imageInfo.filePath )));
 				
 				rootNode.appendChild(spriteNode);
