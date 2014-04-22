@@ -19,6 +19,8 @@ package layer
 		public static const EVENT_DRAW_ALL_BOUNDARY:String = "EVENT_DRAW_ALL_BOUNDARY";
 		public static const EVENT_ERASE_ALL_BOUNDARY:String = "EVENT_ERASE_ALL_BOUNDARY"
 			
+		private const BACKGROUND_BLOCK_SIZE:int = 15;
+			
 		private var _sheetInfo:SpriteSheetInfo;
 
 		public function SpriteSheetLayer()
@@ -42,7 +44,7 @@ package layer
 		}
 		
 		private function OnAllImageLoad(event:ImageCustomEvent):void
-		{
+		{			
 			// 읽은 이미지 벡터를 이용해 스프라이트 시트 이미지 생성
 			var spriteSheetMaker:SpriteSheetMaker = new SpriteSheetMaker();
 			_sheetInfo = spriteSheetMaker.MakeSpriteSheet(event.imageInfoVec);
@@ -50,6 +52,9 @@ package layer
 			// 디바이스 해상도에 맞게 스케일 조정
 			_sheetInfo.spriteSheetImage.scaleX = Resources.RESOLUTION_WIDTH/_sheetInfo.width;
 			_sheetInfo.spriteSheetImage.scaleY = Resources.RESOLUTION_HEIGHT/_sheetInfo.height;
+			
+			// 뒷 배경을 그림 
+			DrawBackground();
 			
 			// 스프라이트 시트 이미지 출력
 			addChild(_sheetInfo.spriteSheetImage);
@@ -61,6 +66,35 @@ package layer
 			// PNG 파일 추출
 			var pngExporter:PNGExporter = new PNGExporter();
 			pngExporter.Export(_sheetInfo);
+		}
+		
+		private function DrawBackground():void
+		{
+			for(var i:uint = 0; i<_sheetInfo.width; i += BACKGROUND_BLOCK_SIZE )
+			{
+				for(var j:uint=0; j<_sheetInfo.height; j += BACKGROUND_BLOCK_SIZE)
+				{
+					// 짝수 번째 라인
+					if( (i/BACKGROUND_BLOCK_SIZE)%2 == 0 ) 
+					{
+						if( (j/BACKGROUND_BLOCK_SIZE)%2 == 0 )
+							this.graphics.beginFill(0xeeeeee);
+						else
+							this.graphics.beginFill(0xffffff);
+					}
+					// 홀수 번째 라인
+					else
+					{
+						if( (j/BACKGROUND_BLOCK_SIZE)%2 == 0 )
+							this.graphics.beginFill(0xffffff);
+						else
+							this.graphics.beginFill(0xeeeeee);
+					}
+					
+					this.graphics.drawRect(j, i, BACKGROUND_BLOCK_SIZE, BACKGROUND_BLOCK_SIZE);
+					this.graphics.endFill();
+				}
+			}
 		}
 		
 		
