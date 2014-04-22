@@ -1,4 +1,4 @@
-package Image
+package spriteSheet.image
 {
 	import flash.display.BitmapData;
 	import flash.display.Sprite;

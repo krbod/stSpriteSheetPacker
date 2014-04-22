@@ -1,4 +1,4 @@
-package utils.RectanglePacker
+package utils.rectanglePacker
 {
 	public class RectanglePacker
 	{	

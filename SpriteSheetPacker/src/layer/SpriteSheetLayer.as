@@ -1,16 +1,16 @@
-package Layer
+package layer
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import utils.Exporter.PNGExporter;
-	import utils.Exporter.XMLExporter;
+	import utils.exporter.PNGExporter;
+	import utils.exporter.XMLExporter;
 	
-	import Image.ImageCustomEvent;
-	import utils.Importer.ImageLoader;
+	import spriteSheet.image.ImageCustomEvent;
+	import utils.importer.ImageLoader;
 	
-	import SpriteSheet.SpriteSheetInfo;
-	import SpriteSheet.SpriteSheetMaker;
+	import spriteSheet.SpriteSheetInfo;
+	import spriteSheet.SpriteSheetMaker;
 	import utils.Resources;
 	
 	public class SpriteSheetLayer extends Sprite
@@ -30,11 +30,6 @@ package Layer
 			
 			addEventListener(EVENT_DRAW_ALL_BOUNDARY, OnDrawAllBoundary);
 			addEventListener(EVENT_ERASE_ALL_BOUNDARY, OnEraseAllBoundary);
-		}
-		
-		public function GetTest():int
-		{
-			return 1;
 		}
 		
 		private function OnAllImageLoad(event:ImageCustomEvent):void

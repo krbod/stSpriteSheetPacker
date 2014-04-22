@@ -1,4 +1,4 @@
-package SpriteSheet
+package spriteSheet
 {
 	import flash.display.Bitmap;
 	import flash.display.MovieClip;
@@ -17,16 +17,6 @@ package SpriteSheet
 		{
 			_boundary = new MovieClip();
 		
-		}
-		
-		/**
-		 * 스프라이트 이미지에 대해 클릭 이벤트 리스너를 설정합니다. 
-		 * @param sprite 클릭 이벤트 리스너를 설정할 스프라이트 객체
-		 * 
-		 */
-		public function SetClickEventListener(sprite:Sprite):void
-		{			
-			sprite.addEventListener(MouseEvent.CLICK, OnClick);
 		}
 		
 		public function DrawAllBoundary(spriteInfoVec:Vector.<SpriteInfo>, spriteSheetSprite:Sprite):void
@@ -56,7 +46,7 @@ package SpriteSheet
 		 * @param event 클릭한 스프라이트에 대한 마우스 이벤트 
 		 * 
 		 */
-		private function OnClick(event:MouseEvent):void
+		public function OnClick(event:MouseEvent):void
 		{
 			var bmpContainer:Sprite = Sprite(event.target);			
 			var bmp:Bitmap = Bitmap(bmpContainer.getChildAt(0));

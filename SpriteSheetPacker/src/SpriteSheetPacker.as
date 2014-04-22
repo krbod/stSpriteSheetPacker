@@ -17,8 +17,8 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	
-	import Layer.SpriteSheetLayer;
-	import Layer.UILayer;
+	import layer.SpriteSheetLayer;
+	import layer.UILayer;
 	import utils.Resources;
 	
 		

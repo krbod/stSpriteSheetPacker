@@ -1,6 +1,6 @@
-package SpriteSheet
+package spriteSheet
 {
-	import Image.ImageFileInfo;
+	import spriteSheet.image.ImageFileInfo;
 
 	/**
 	 * 스프라이트 시트에 저장될 각각의 이미지 정보를 저장

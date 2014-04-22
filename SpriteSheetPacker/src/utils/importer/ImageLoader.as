@@ -1,4 +1,4 @@
-package utils.Importer
+package utils.importer
 {
 	import flash.display.Bitmap;
 	import flash.display.Loader;
@@ -11,8 +11,8 @@ package utils.Importer
 	import flash.net.URLRequest;
 	import flash.utils.ByteArray;
 	
-	import Image.ImageCustomEvent;
-	import Image.ImageFileInfo;
+	import spriteSheet.image.ImageCustomEvent;
+	import spriteSheet.image.ImageFileInfo;
 
 	/**
 	 * 지정되어 있는 "in" 폴더 내부에 있는 이미지 파일을 읽어옵니다. <br/>

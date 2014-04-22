@@ -1,9 +1,10 @@
-package SpriteSheet
+package spriteSheet
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.events.MouseEvent;
 	
-	import Image.ImageFileInfo;
+	import spriteSheet.image.ImageFileInfo;
 
 	/**
 	 * 출력 결과물인 스프라이트 시트에 대한 정보를 가집니다. 
@@ -44,8 +45,8 @@ package SpriteSheet
 			sprite.addChild(bmp);
 			_spriteSheetSprite.addChild(sprite);
 			
-			// Boundary Handler 객체에 클릭 이벤트 등록
-			_boundaryHandler.SetClickEventListener(sprite);
+			// 객체에 클릭 이벤트 등록
+			sprite.addEventListener(MouseEvent.CLICK, _boundaryHandler.OnClick);
 			
 			// 스프라이트 정보 생성
 			var spriteInfo:SpriteInfo = new SpriteInfo(bmp.x, bmp.y, 

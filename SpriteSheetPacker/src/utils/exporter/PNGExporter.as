@@ -1,4 +1,4 @@
-package utils.Exporter
+package utils.exporter
 {
 	
 	import flash.display.BitmapData;
@@ -8,7 +8,7 @@ package utils.Exporter
 	import flash.utils.ByteArray;
 	
 	
-	import SpriteSheet.SpriteSheetInfo;
+	import spriteSheet.SpriteSheetInfo;
 	import utils.Resources;
 
 	/**

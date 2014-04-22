@@ -1,11 +1,11 @@
-package utils.Exporter
+package utils.exporter
 {
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
 	
-	import SpriteSheet.SpriteInfo;
-	import SpriteSheet.SpriteSheetInfo;
+	import spriteSheet.SpriteInfo;
+	import spriteSheet.SpriteSheetInfo;
 	import utils.Resources;
 
 	public class XMLExporter
