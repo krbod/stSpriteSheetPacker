@@ -23,7 +23,7 @@ package spriteSheet.image
 		/**
 		 * bmpData 자원 해제 
 		 */
-		public function Clean():void
+		public function Clear():void
 		{
 			_bmpData.dispose();
 		}

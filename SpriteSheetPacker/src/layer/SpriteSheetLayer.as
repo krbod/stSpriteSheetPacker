@@ -43,6 +43,15 @@ package layer
 			addEventListener(EVENT_HANDLE_BOUNDARY, OnDrawAllBoundary);
 		}
 		
+		public function Clear():void
+		{
+			if( _sheetInfo != null )
+			{
+				_sheetInfo.Clear();
+				_sheetInfo = null;
+			}
+		}
+		
 		private function OnAllImageLoad(event:ImageCustomEvent):void
 		{			
 			// 읽은 이미지 벡터를 이용해 스프라이트 시트 이미지 생성
@@ -104,7 +113,6 @@ package layer
 				}
 			}
 		}
-		
 		
 		/**
 		 * 모든 이미지 주변에 경계를 그립니다.

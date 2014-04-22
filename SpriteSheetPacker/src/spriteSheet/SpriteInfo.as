@@ -20,6 +20,15 @@ package spriteSheet
 			_imageInfo = imageInfo;
 		}
 		
+		/**
+		 * 사용한 자원을 해제합니다 
+		 */
+		public function Clear():void
+		{
+			_imageInfo.Clear();
+			_imageInfo = null;
+		}
+		
 		
 		/** Property */
 		

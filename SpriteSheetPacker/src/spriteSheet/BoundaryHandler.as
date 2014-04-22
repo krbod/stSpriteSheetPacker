@@ -76,5 +76,11 @@ package spriteSheet
 			_boundary.graphics.drawRect(x1, y1, x2-x1, y2-y1);
 			_boundary.graphics.endFill();
 		}
+		
+		public function Clear():void
+		{
+			_boundary.graphics.clear();
+			_boundary = null;
+		}
 	}
 }

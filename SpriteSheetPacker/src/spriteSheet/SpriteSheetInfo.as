@@ -67,11 +67,43 @@ package spriteSheet
 
 		
 		/**
-		 * 스프라이트 이미지 주위에 있는 경계선을 지웁니다. 
+		 * 스프라이트 이미지 주위에 있는 경계선을 지웁니다.
 		 */
 		public function EraseAllBoundary():void
 		{
 			_boundaryHandler.EraseAllBoundary();
+		}
+		
+		/**
+		 * 사용한 자원을 해제 합니다.
+		 */
+		public function Clear():void
+		{			
+			// 스프라이트 이미지 정보 벡터 자원 해제
+			while( _spriteInfoVec.length )
+			{
+				var spriteInfo:SpriteInfo = _spriteInfoVec.pop();
+				spriteInfo.Clear();
+				spriteInfo = null;
+			}
+			_spriteInfoVec = null;
+			
+			// 스프라이트 이미지의 마우스 클릭 이벤트 리스너 함수 해제 및 Bitmap 객체 해제
+			for(var i:uint=0; i<_spriteSheetSprite.numChildren; ++i)
+			{
+				var bmp:Bitmap = Bitmap(Sprite(_spriteSheetSprite.getChildAt(i)).getChildAt(0));
+				bmp.removeEventListener(MouseEvent.CLICK, _boundaryHandler.OnClick);
+				bmp = null;				
+			}
+			
+			// BoundaryHandler 자원 해제
+			if( _boundaryHandler != null )
+			{
+				_boundaryHandler.Clear();
+				_boundaryHandler = null;
+			}
+			
+			_spriteSheetSprite = null;
 		}
 		
 		
