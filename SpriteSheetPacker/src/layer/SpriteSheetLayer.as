@@ -68,16 +68,19 @@ package layer
 			pngExporter.Export(_sheetInfo);
 		}
 		
+		/**
+		 * PNG 이미지들의 투명 효과를 나타내기 위해 배경화면을 출력합니다.
+		 */
 		private function DrawBackground():void
 		{
-			for(var i:uint = 0; i<_sheetInfo.width; i += BACKGROUND_BLOCK_SIZE )
+			for(var y:uint = 0; y<_sheetInfo.height; y += BACKGROUND_BLOCK_SIZE )
 			{
-				for(var j:uint=0; j<_sheetInfo.height; j += BACKGROUND_BLOCK_SIZE)
+				for(var x:uint=0; x<_sheetInfo.width; x += BACKGROUND_BLOCK_SIZE)
 				{
 					// 짝수 번째 라인
-					if( (i/BACKGROUND_BLOCK_SIZE)%2 == 0 ) 
+					if( (y/BACKGROUND_BLOCK_SIZE)%2 == 0 ) 
 					{
-						if( (j/BACKGROUND_BLOCK_SIZE)%2 == 0 )
+						if( (x/BACKGROUND_BLOCK_SIZE)%2 == 0 )
 							this.graphics.beginFill(0xeeeeee);
 						else
 							this.graphics.beginFill(0xffffff);
@@ -85,13 +88,13 @@ package layer
 					// 홀수 번째 라인
 					else
 					{
-						if( (j/BACKGROUND_BLOCK_SIZE)%2 == 0 )
+						if( (x/BACKGROUND_BLOCK_SIZE)%2 == 0 )
 							this.graphics.beginFill(0xffffff);
 						else
 							this.graphics.beginFill(0xeeeeee);
 					}
 					
-					this.graphics.drawRect(j, i, BACKGROUND_BLOCK_SIZE, BACKGROUND_BLOCK_SIZE);
+					this.graphics.drawRect(x, y, BACKGROUND_BLOCK_SIZE, BACKGROUND_BLOCK_SIZE);
 					this.graphics.endFill();
 				}
 			}

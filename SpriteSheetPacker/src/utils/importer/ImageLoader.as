@@ -83,7 +83,7 @@ package utils.importer
 			
 			imageInfo.fileName = GetFileName(_fileList[_loadedImageCount].url);
 			imageInfo.fileExtension = GetFileExtenstion(_fileList[_loadedImageCount].url);
-			imageInfo.filePath = GetFilePath(_fileList[_loadedImageCount].url);	// relative path
+			imageInfo.filePath = GetFilePath(_fileList[_loadedImageCount].url);					//상대 경로
 			
 			_imageInfoVec.push(imageInfo);
 			
