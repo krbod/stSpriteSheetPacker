@@ -47,7 +47,7 @@ package
 			// 폴더 내에 있는 이미지를 불러와 스프라이트 이미지를 생성
 			_spriteSheetLayer.LoadImages();
 			
-			addEventListener(MouseEvent.MOUSE_DOWN, BeginDrag);
+			stage.addEventListener(MouseEvent.MOUSE_DOWN, BeginDrag);
 		}		
 		
 		private function BeginDrag(event:MouseEvent):void
@@ -55,9 +55,9 @@ package
 			_beginX = mouseX-_spriteSheetLayer.x;
 			_beginY = mouseY-_spriteSheetLayer.y;
 			
-			removeEventListener(MouseEvent.MOUSE_DOWN, BeginDrag);
+			stage.removeEventListener(MouseEvent.MOUSE_DOWN, BeginDrag);
 			addEventListener(Event.ENTER_FRAME, OnDrag, false, 0, true);
-			addEventListener(MouseEvent.MOUSE_UP, EndDrag);			
+			stage.addEventListener(MouseEvent.MOUSE_UP, EndDrag);			
 		}
 		
 		private function OnDrag(evt:Event):void 
@@ -68,9 +68,9 @@ package
 		
 		private function EndDrag(evt:Event):void 
 		{
-			addEventListener(MouseEvent.MOUSE_DOWN,BeginDrag);
+			stage.addEventListener(MouseEvent.MOUSE_DOWN,BeginDrag);
 			removeEventListener(Event.ENTER_FRAME,OnDrag);
-			removeEventListener(MouseEvent.MOUSE_UP,EndDrag);
+			stage.removeEventListener(MouseEvent.MOUSE_UP,EndDrag);
 		}
 		
 	}
