@@ -10,6 +10,7 @@ package utils
 		
 		/** Files */
 		
+		public static const EXPORT_FILE_DIRECTORY:String = "out/"
 		public static const EXPORT_PNG_FILE_PATH:String = "out/spritesheet.png";
 		public static  const EXPORT_XML_FILE_PATH:String = "out/atlas.xml";
 		

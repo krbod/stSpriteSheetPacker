@@ -3,9 +3,11 @@ package exporter
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
+	import flash.system.Capabilities;
 	
 	import spriteSheet.SpriteInfo;
 	import spriteSheet.SpriteSheetInfo;
+	
 	import utils.Resources;
 	
 
@@ -33,18 +35,29 @@ package exporter
 		{			
 			// XML 데이터를 생성
 			_rootNode = MakeXMLNode(spriteSheetInfo);
-						
-			// 파일에 XML 관련 데이터를 씀
-			var file:File = File.desktopDirectory.resolvePath(Resources.EXPORT_XML_FILE_PATH);
+					
+			// 파일에 XML 관련 데이터를 씀		
+			var destString:String;
+			if( Capabilities.os.toLowerCase().indexOf("win") >= 0 )
+			{
+				destString = File.applicationDirectory.resolvePath(Resources.EXPORT_XML_FILE_PATH).nativePath;
+			}
+			else
+			{
+				destString = File.applicationStorageDirectory.resolvePath(Resources.EXPORT_XML_FILE_PATH).nativePath;
+			}
+			
+			var destFile:File = new File( destString	);
+			
 			var fileStream:FileStream = new FileStream();
-			fileStream.open(file, FileMode.WRITE);
+			fileStream.open(destFile, FileMode.WRITE);
 						
 			fileStream.writeUTFBytes(_rootNode.toXMLString());
 			fileStream.close();
 			
 			// 사용한 자원 해제
 			fileStream = null;
-			file = null;
+			destFile = null;
 			
 			ClearAllNode(_rootNode);
 		}

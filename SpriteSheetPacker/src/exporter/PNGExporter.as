@@ -5,10 +5,11 @@ package exporter
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
+	import flash.system.Capabilities;
 	import flash.utils.ByteArray;
 	
-	
 	import spriteSheet.SpriteSheetInfo;
+	
 	import utils.Resources;
 
 	/**
@@ -32,12 +33,22 @@ package exporter
 			
 			// BitmapData 를 PNG 로 인코딩
 			var bytes:ByteArray = PNGEncoder.encode(bitmapData);
-			
-			
+						
 			// PNG 데이터가 있는 ByteArray 를 파일로 씀
-			var file:File = File.desktopDirectory.resolvePath(Resources.EXPORT_PNG_FILE_PATH);
+			var destString:String;
+			if( Capabilities.os.toLowerCase().indexOf("win") >= 0 )
+			{
+				destString = File.applicationDirectory.resolvePath(Resources.EXPORT_PNG_FILE_PATH).nativePath;
+			}
+			else
+			{
+				destString = File.applicationStorageDirectory.resolvePath(Resources.EXPORT_PNG_FILE_PATH).nativePath;
+			}
+			
+			var destFile:File = new File( destString );
+			
 			var fileStream:FileStream = new FileStream();
-			fileStream.open(file, FileMode.WRITE);
+			fileStream.open(destFile, FileMode.WRITE);
 			
 			fileStream.writeBytes(bytes);
 						
@@ -46,7 +57,7 @@ package exporter
 			bitmapData.dispose();
 			bytes.clear();
 			
-			file = null;
+			destFile = null;
 			fileStream = null;
 		}
 	}
