@@ -1,11 +1,11 @@
-package utils.rectanglePacker.test
+package rectanglePacker.test
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
-	import utils.rectanglePacker.RectanglePacker;
-	import utils.rectanglePacker.stRect;
+	import rectanglePacker.RectanglePacker;
+	import rectanglePacker.stRect;
 	
 	public class RectanglePackerTester extends Sprite
 	{

@@ -1,9 +1,11 @@
 package spriteSheet
 {
-	import flash.display.Bitmap;	
-	import spriteSheet.image.ImageFileInfo;	
-	import utils.rectanglePacker.RectanglePacker;
-	import utils.rectanglePacker.stRect;
+	import flash.display.Bitmap;
+	
+	import rectanglePacker.RectanglePacker;
+	import rectanglePacker.stRect;
+	
+	import spriteSheet.image.ImageFileInfo;
 
 	/**
 	 * 이미지 정보를 가진 벡터로부터 스프라이트 시트를 제작합니다.
@@ -19,7 +21,7 @@ package spriteSheet
 		 */
 		public function MakeSpriteSheet(imageFileInfoVec:Vector.<ImageFileInfo>):SpriteSheetInfo
 		{						
-			var rectanglePacker:RectanglePacker = new RectanglePacker(SPACING);			
+			var rectPacker:RectanglePacker = new RectanglePacker(SPACING);			
 			var bitmapVec:Vector.<Bitmap> = new Vector.<Bitmap>;
 			var spriteSheetInfo:SpriteSheetInfo = new SpriteSheetInfo();
 			
@@ -29,13 +31,14 @@ package spriteSheet
 			for(var i:uint = 0; i<imageFileInfoVec.length; ++i)
 			{
 				// 이미지 파일의 크기를 읽어 Rectangle Packing 알고리즘 적용
-				var rect:stRect = rectanglePacker.InsertNewRect(new stRect(0, 0, imageFileInfoVec[i].bmpData.width, imageFileInfoVec[i].bmpData.height));
+				var rect:stRect = rectPacker.InsertNewRect(new stRect(0, 0, imageFileInfoVec[i].bmpData.width, imageFileInfoVec[i].bmpData.height));
+				
 				
 				// 스프라이트 시트 전체 이미지 크기가 작아서 더이상 추가를 못 할경우 
 				// 이미지를 2배 늘려서 다시 저장
 				if( rect == null )
 				{
-					rectanglePacker.Resize();	// 2배 늘림
+					rectPacker.Resize();	// 2배 늘림
 					i = -1;
 					
 					while(bitmapVec.length)	// 비트맵 벡터 해제
@@ -54,7 +57,7 @@ package spriteSheet
 			}
 			
 			// 스프라이트 시트 정보 저장
-			var spriteSize:int = rectanglePacker.size();
+			var spriteSize:int = rectPacker.size();
 			
 			spriteSheetInfo.width = spriteSize;
 			spriteSheetInfo.height = spriteSize;
@@ -66,8 +69,8 @@ package spriteSheet
 			}
 			
 			// 사용한 자원 해제
-			rectanglePacker.Clear();
-			rectanglePacker = null;
+			rectPacker.Clear();
+			rectPacker = null;
 			
 			return spriteSheetInfo;
 		}

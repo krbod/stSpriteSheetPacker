@@ -3,11 +3,11 @@ package layer
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import utils.exporter.PNGExporter;
-	import utils.exporter.XMLExporter;
+	import exporter.PNGExporter;
+	import exporter.XMLExporter;
 	
 	import spriteSheet.image.ImageCustomEvent;
-	import utils.importer.ImageLoader;
+	import importer.ImageLoader;
 	
 	import spriteSheet.SpriteSheetInfo;
 	import spriteSheet.SpriteSheetMaker;

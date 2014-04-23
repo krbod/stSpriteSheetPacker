@@ -1,4 +1,4 @@
-package utils.importer
+package importer
 {
 	import flash.display.Bitmap;
 	import flash.display.Loader;

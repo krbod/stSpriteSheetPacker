@@ -1,4 +1,4 @@
-package utils.exporter
+package exporter
 {
 	
 	import flash.display.BitmapData;
