@@ -19,10 +19,7 @@ package layer
 	{		
 		// Boundary 출력 및 삭제 관련 이벤트
 		public static const EVENT_HANDLE_BOUNDARY:String = "EVENT_HANDLE_BOUNDARY";
-		
-		// 배경 투명 블럭의 가로 세로 크기
-		private const BACKGROUND_BLOCK_SIZE:int = 15;			
-		
+				
 		private var _sheetInfo:SpriteSheetInfo;		
 
 		public function SpriteSheetLayer()
@@ -62,10 +59,7 @@ package layer
 			// 읽은 이미지 벡터를 이용해 스프라이트 시트 이미지 생성
 			var spriteSheetMaker:SpriteSheetMaker = new SpriteSheetMaker();
 			_sheetInfo = spriteSheetMaker.MakeSpriteSheet(event.imageInfoVec);
-			
-			// 뒷 배경을 그림 
-			DrawBackground();
-			
+						
 			// 스프라이트 시트 이미지 출력
 			addChild(_sheetInfo.spriteSheetImage);
 			
@@ -82,38 +76,7 @@ package layer
 			xmlExporter = null;
 			pngExporter = null;
 		}
-		
-		/**
-		 * PNG 이미지들의 투명 효과를 나타내기 위해 배경화면을 출력합니다.
-		 */
-		private function DrawBackground():void
-		{
-			for(var y:uint = 0; y<_sheetInfo.height; y += BACKGROUND_BLOCK_SIZE )
-			{
-				for(var x:uint=0; x<_sheetInfo.width; x += BACKGROUND_BLOCK_SIZE)
-				{
-					// 짝수 번째 라인
-					if( (y/BACKGROUND_BLOCK_SIZE)%2 == 0 ) 
-					{
-						if( (x/BACKGROUND_BLOCK_SIZE)%2 == 0 )
-							this.graphics.beginFill(0xeeeeee);
-						else
-							this.graphics.beginFill(0xffffff);
-					}
-					// 홀수 번째 라인
-					else
-					{
-						if( (x/BACKGROUND_BLOCK_SIZE)%2 == 0 )
-							this.graphics.beginFill(0xffffff);
-						else
-							this.graphics.beginFill(0xeeeeee);
-					}
-					
-					this.graphics.drawRect(x, y, BACKGROUND_BLOCK_SIZE, BACKGROUND_BLOCK_SIZE);
-					this.graphics.endFill();
-				}
-			}
-		}
+
 		
 		/**
 		 * 모든 이미지 주변에 경계를 그립니다.

@@ -2,12 +2,6 @@ package utils
 {
 	public class Resources
 	{
-		/** Device Resolution */
-		
-		public static const RESOLUTION_WIDTH:int = 1024;
-		public static const RESOLUTION_HEIGHT:int = 768;		
-		
-		
 		/** Images */
 		
 		public static const IMAGE_BOUNDARY:String = "res/boundary.png";

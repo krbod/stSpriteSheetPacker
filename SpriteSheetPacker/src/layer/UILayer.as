@@ -18,7 +18,7 @@ package layer
 	public class UILayer extends Sprite
 	{		
 		// 경계 출력 버튼 위치
-		private const BOUNDARY_BTN_POS_X:Number = 0.85;
+		private const BOUNDARY_BTN_POS_X:Number = 0.8;
 		private const BOUNDARY_BTN_POS_Y:Number = 0.8;
 		
 		private var _boundaryButton:Sprite;
@@ -50,8 +50,8 @@ package layer
 			_boundaryButton.buttonMode = true;
 			_boundaryButton.addEventListener(MouseEvent.CLICK, OnBoundaryClick);	
 			
-			bmp.x = Resources.RESOLUTION_WIDTH * BOUNDARY_BTN_POS_X;
-			bmp.y = Resources.RESOLUTION_HEIGHT * BOUNDARY_BTN_POS_Y;
+			bmp.x = stage.fullScreenWidth * BOUNDARY_BTN_POS_X;
+			bmp.y = stage.fullScreenHeight * BOUNDARY_BTN_POS_Y;
 			
 			addChild(_boundaryButton);
 		}
