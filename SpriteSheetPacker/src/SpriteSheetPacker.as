@@ -16,8 +16,6 @@ package
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
-	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
 	import layer.SpriteSheetLayer;
 	import layer.TransparentLayer;
@@ -25,8 +23,7 @@ package
 	
 		
 	public class SpriteSheetPacker extends Sprite
-	{				
-		private var _beginX:Number, _beginY:Number;		
+	{					
 		private var _spriteSheetLayer:SpriteSheetLayer;
 		
 		public function SpriteSheetPacker()
@@ -44,7 +41,7 @@ package
 			
 			// 스프라이트 시트 이미지를 출력하는 레이어 생성
 			_spriteSheetLayer = new SpriteSheetLayer();
-			addChild(_spriteSheetLayer);			
+			addChild(_spriteSheetLayer);						
 			
 			// UI 레이어 생성
 			var uiLayer:UILayer = new UILayer();
@@ -53,31 +50,11 @@ package
 			// 폴더 내에 있는 이미지를 불러와 스프라이트 이미지를 생성
 			_spriteSheetLayer.LoadImages();
 			
-			stage.addEventListener(MouseEvent.MOUSE_DOWN, BeginDrag);
-		}		
-		
-		private function BeginDrag(event:MouseEvent):void
-		{			
-			_beginX = mouseX-_spriteSheetLayer.x;
-			_beginY = mouseY-_spriteSheetLayer.y;
+			// 스프라이트 시트를 스크롤 시킬 수 있도록 설정
+			_spriteSheetLayer.AddScrollListener();
 			
-			stage.removeEventListener(MouseEvent.MOUSE_DOWN, BeginDrag);
-			addEventListener(Event.ENTER_FRAME, OnDrag, false, 0, true);
-			stage.addEventListener(MouseEvent.MOUSE_UP, EndDrag);			
-		}
-		
-		private function OnDrag(evt:Event):void 
-		{			
-			_spriteSheetLayer.x = mouseX - _beginX;
-			_spriteSheetLayer.y = mouseY - _beginY;
-		}
-		
-		private function EndDrag(evt:Event):void 
-		{
-			stage.addEventListener(MouseEvent.MOUSE_DOWN,BeginDrag);
-			removeEventListener(Event.ENTER_FRAME,OnDrag);
-			stage.removeEventListener(MouseEvent.MOUSE_UP,EndDrag);
-		}
-		
+		}		
+
+
 	}
 }

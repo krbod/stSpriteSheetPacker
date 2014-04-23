@@ -14,6 +14,8 @@ package layer
 	import spriteSheet.image.ImageCustomEvent;
 	
 	import utils.Resources;
+	import utils.ScrollEvent;
+	import utils.ScrollManager;
 	
 	public class SpriteSheetLayer extends Sprite
 	{		
@@ -26,6 +28,7 @@ package layer
 		{			
 			this.name = Resources.LAYER_NAME_SPRITE_SHEET;
 		}
+				
 		/**
 		 * 폴더 내 이미지를 로드하고 스프라이트 시트를 만든후 출력합니다.<br/> 
 		 * 출력후에는 atlas.xml 과 spritesheet.png 파일을 생성합니다. 
@@ -43,6 +46,15 @@ package layer
 		}
 		
 		/**
+		 * 스프라이트를 스크롤할 수 있도록 합니다. 
+		 */
+		public function AddScrollListener():void
+		{
+			var scrollManager:ScrollManager = new ScrollManager(stage, this);
+			scrollManager.addEventListener(ScrollManager.GET_INTERVAL, OnScrollSprite);
+		}
+
+		/**
 		 * 사용한 자원을 해제 합니다. 
 		 */
 		public function Clear():void
@@ -53,7 +65,16 @@ package layer
 				_sheetInfo = null;
 			}
 		}
-		
+				
+		/**
+		 * 스크롤 이벤트 결과를 받아 Sprite Sheet Layer 를 이동시킵니다. 
+		 * @param event 마우스 드래그 변화량이 들어있는 이벤트 객체
+		 */
+		private function OnScrollSprite(event:ScrollEvent):void{
+			this.x = event.interval[0];
+			this.y = event.interval[1];			
+		}
+			
 		private function OnAllImageLoad(event:ImageCustomEvent):void
 		{			
 			// 읽은 이미지 벡터를 이용해 스프라이트 시트 이미지 생성
