@@ -2,15 +2,17 @@ package layer
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import exporter.PNGExporter;
 	import exporter.XMLExporter;
 	
-	import spriteSheet.image.ImageCustomEvent;
 	import importer.ImageLoader;
 	
 	import spriteSheet.SpriteSheetInfo;
 	import spriteSheet.SpriteSheetMaker;
+	import spriteSheet.image.ImageCustomEvent;
+	
 	import utils.Resources;
 	
 	public class SpriteSheetLayer extends Sprite
@@ -22,6 +24,7 @@ package layer
 		private const BACKGROUND_BLOCK_SIZE:int = 15;
 			
 		private var _sheetInfo:SpriteSheetInfo;
+		
 
 		public function SpriteSheetLayer()
 		{			
@@ -42,6 +45,8 @@ package layer
 			// 경계를 그리는 이벤트 리스너 설정
 			addEventListener(EVENT_HANDLE_BOUNDARY, OnDrawAllBoundary);
 		}
+		
+
 		
 		/**
 		 * 사용한 자원을 해제 합니다. 
