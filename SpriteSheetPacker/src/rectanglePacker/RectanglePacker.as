@@ -4,9 +4,7 @@ package rectanglePacker
 	{	
 		private var _rootNode:Node;	// Packing 알고리즘 최 상위 루트 노드
 		
-		private const INITIAL_SIZE:int = 128;
-		
-		private var _canvasSize:int = INITIAL_SIZE;
+		private const INITIAL_SIZE:int = 32;
 		
 		private var _canvasWidth:int = INITIAL_SIZE;
 		private var _canvasHeight:int = INITIAL_SIZE;
@@ -16,7 +14,7 @@ package rectanglePacker
 		public function RectanglePacker(spacing:int = 0)
 		{			
 			_rootNode = new Node();
-			_rootNode.rect = new stRect(0, 0, _canvasSize, _canvasSize);
+			_rootNode.rect = new stRect(0, 0, _canvasWidth, _canvasHeight);
 			
 			_spacing = spacing;
 		}

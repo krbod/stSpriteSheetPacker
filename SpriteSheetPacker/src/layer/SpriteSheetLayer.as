@@ -21,10 +21,9 @@ package layer
 		public static const EVENT_HANDLE_BOUNDARY:String = "EVENT_HANDLE_BOUNDARY";
 		
 		// 배경 투명 블럭의 가로 세로 크기
-		private const BACKGROUND_BLOCK_SIZE:int = 15;
-			
-		private var _sheetInfo:SpriteSheetInfo;
+		private const BACKGROUND_BLOCK_SIZE:int = 15;			
 		
+		private var _sheetInfo:SpriteSheetInfo;		
 
 		public function SpriteSheetLayer()
 		{			
@@ -45,8 +44,6 @@ package layer
 			// 경계를 그리는 이벤트 리스너 설정
 			addEventListener(EVENT_HANDLE_BOUNDARY, OnDrawAllBoundary);
 		}
-		
-
 		
 		/**
 		 * 사용한 자원을 해제 합니다. 

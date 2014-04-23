@@ -13,7 +13,6 @@
 
 package
 {
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -51,24 +50,27 @@ package
 			addEventListener(MouseEvent.MOUSE_DOWN, BeginDrag);
 		}		
 		
-		private function BeginDrag(event:MouseEvent):void{					
-			_beginX = event.localX;
-			_beginY = event.localY;
+		private function BeginDrag(event:MouseEvent):void
+		{			
+			_beginX = mouseX-_spriteSheetLayer.x;
+			_beginY = mouseY-_spriteSheetLayer.y;
 			
 			removeEventListener(MouseEvent.MOUSE_DOWN, BeginDrag);
-			addEventListener(Event.ENTER_FRAME, DoDrag, false, 0, true);
-			addEventListener(MouseEvent.MOUSE_UP, KillDrag);			
+			addEventListener(Event.ENTER_FRAME, OnDrag, false, 0, true);
+			addEventListener(MouseEvent.MOUSE_UP, EndDrag);			
 		}
 		
-		private function DoDrag(evt:Event):void {
+		private function OnDrag(evt:Event):void 
+		{			
 			_spriteSheetLayer.x = mouseX - _beginX;
 			_spriteSheetLayer.y = mouseY - _beginY;
 		}
 		
-		private function KillDrag(evt:Event):void {
+		private function EndDrag(evt:Event):void 
+		{
 			addEventListener(MouseEvent.MOUSE_DOWN,BeginDrag);
-			removeEventListener(Event.ENTER_FRAME,DoDrag);
-			removeEventListener(MouseEvent.MOUSE_UP,KillDrag);
+			removeEventListener(Event.ENTER_FRAME,OnDrag);
+			removeEventListener(MouseEvent.MOUSE_UP,EndDrag);
 		}
 		
 	}

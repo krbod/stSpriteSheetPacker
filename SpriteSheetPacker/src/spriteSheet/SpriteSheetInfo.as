@@ -29,7 +29,7 @@ package spriteSheet
 		{
 			_spriteInfoVec = new Vector.<SpriteInfo>;		
 			_spriteSheetSprite = new Sprite();	
-			_boundaryHandler = new BoundaryHandler();
+			_boundaryHandler = new BoundaryHandler();			
 		}
 		
 		/**
@@ -55,8 +55,7 @@ package spriteSheet
 																			imageFileInfo); 
 			_spriteInfoVec.push(spriteInfo);
 		}
-		
-		
+				
 		/**
 		 * 스프라이트 이미지 주위에 경계선을 긋습니다. 
 		 */
@@ -64,7 +63,6 @@ package spriteSheet
 		{
 			_boundaryHandler.DrawAllBoundary(_spriteInfoVec, _spriteSheetSprite);
 		}
-
 		
 		/**
 		 * 스프라이트 이미지 주위에 있는 경계선을 지웁니다.

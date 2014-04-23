@@ -50,8 +50,8 @@ package layer
 			_boundaryButton.buttonMode = true;
 			_boundaryButton.addEventListener(MouseEvent.CLICK, OnBoundaryClick);	
 			
-			_boundaryButton.x = Resources.RESOLUTION_WIDTH * BOUNDARY_BTN_POS_X;
-			_boundaryButton.y = Resources.RESOLUTION_HEIGHT * BOUNDARY_BTN_POS_Y;
+			bmp.x = Resources.RESOLUTION_WIDTH * BOUNDARY_BTN_POS_X;
+			bmp.y = Resources.RESOLUTION_HEIGHT * BOUNDARY_BTN_POS_Y;
 			
 			addChild(_boundaryButton);
 		}
