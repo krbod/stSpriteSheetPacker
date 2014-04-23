@@ -57,10 +57,14 @@ package spriteSheet
 			}
 			
 			// 스프라이트 시트 정보 저장
-			var spriteSize:int = rectPacker.size();
+			//var spriteSize:int = rectPacker.size();
 			
-			spriteSheetInfo.width = spriteSize;
-			spriteSheetInfo.height = spriteSize;
+//			spriteSheetInfo.width = spriteSize;
+//			spriteSheetInfo.height = spriteSize;
+			
+			spriteSheetInfo.width = rectPacker.spriteWidth;
+			spriteSheetInfo.height = rectPacker.spriteHeight;
+			
 			
 			// 스프라이트 시트에 각각 이미지에 대한 정보를 저장
 			for(var i:uint = 0; i<bitmapVec.length; ++i)
@@ -73,6 +77,7 @@ package spriteSheet
 			rectPacker = null;
 			
 			return spriteSheetInfo;
+			
 		}
 		
 		/**

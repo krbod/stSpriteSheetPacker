@@ -61,10 +61,6 @@ package layer
 			var spriteSheetMaker:SpriteSheetMaker = new SpriteSheetMaker();
 			_sheetInfo = spriteSheetMaker.MakeSpriteSheet(event.imageInfoVec);
 			
-			// 디바이스 해상도에 맞게 스케일 조정
-			_sheetInfo.spriteSheetImage.scaleX = Resources.RESOLUTION_WIDTH/_sheetInfo.width;
-			_sheetInfo.spriteSheetImage.scaleY = Resources.RESOLUTION_HEIGHT/_sheetInfo.height;
-			
 			// 뒷 배경을 그림 
 			DrawBackground();
 			
