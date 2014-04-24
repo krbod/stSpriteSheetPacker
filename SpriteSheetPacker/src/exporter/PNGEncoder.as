@@ -32,15 +32,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package exporter
 {
 	import flash.display.BitmapData;
+	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.utils.ByteArray;
+	import flash.utils.getTimer;
 	
 	import utils.StatusManager;
 	
 	/**
 	 * Class that converts BitmapData into a valid PNG
 	 */	
-	public class PNGEncoder
+	public class PNGEncoder extends Sprite
 	{
+		private static const END_OF_ENCODING:String = "END_OF_ENCODING";
+		
+		private var _png:ByteArray = new ByteArray();
+		private var _IHDR:ByteArray = new ByteArray();
+		private var _IDAT:ByteArray= new ByteArray();
+		private var _img:BitmapData;
+		private var _frameTime:int = 20;
+		
+		private var _lastRow:uint = 0;
+		
+		private var _callback:Function; 
+		
+		public function PNGEncoder(callback:Function)
+		{
+			_callback = callback;
+		}
+		
 		/**
 		 * Created a PNG image from the specified BitmapData
 		 *
@@ -50,97 +70,152 @@ package exporter
 		 * @playerversion Flash 9.0
 		 * @tiptext
 		 */			
-		public static function encode(img:BitmapData):ByteArray {
-			// Create output byte array
-			var png:ByteArray = new ByteArray();
+		public function encode(img:BitmapData):void 
+		{			
 			// Write PNG signature
-			png.writeUnsignedInt(0x89504e47);
-			png.writeUnsignedInt(0x0D0A1A0A);
+			_png.writeUnsignedInt(0x89504e47);
+			_png.writeUnsignedInt(0x0D0A1A0A);
+			
 			// Build IHDR chunk
-			var IHDR:ByteArray = new ByteArray();
-			IHDR.writeInt(img.width);
-			IHDR.writeInt(img.height);
-			IHDR.writeUnsignedInt(0x08060000); // 32bit RGBA
-			IHDR.writeByte(0);
-			writeChunk(png,0x49484452,IHDR);
+			_IHDR.writeInt(img.width);
+			_IHDR.writeInt(img.height);
+			_IHDR.writeUnsignedInt(0x08060000); // 32bit RGBA
+			_IHDR.writeByte(0);
+			writeChunk(_png,0x49484452,_IHDR);
+			
 			// Build IDAT chunk
-			var IDAT:ByteArray= new ByteArray();
-			for(var i:int=0;i < img.height;i++) {
-				
-				StatusManager.GetInstance().SetStatus("[PNG Encoding] " + ( i / img.height * 100).toFixed(2) + "%"); 
-				
-				// no filter
-				IDAT.writeByte(0);
-				var p:uint;
-				var j:int;
-				if ( !img.transparent ) {
-					for(j=0;j < img.width;j++) {
-						p = img.getPixel(j,i);
-						IDAT.writeUnsignedInt(
-							uint(((p&0xFFFFFF) << 8)|0xFF));
-					}
-				} else {
-					for(j=0;j < img.width;j++) {
-						p = img.getPixel32(j,i);
-						IDAT.writeUnsignedInt(
-							uint(((p&0xFFFFFF) << 8)|
-								(p>>>24)));
-					}
-				}
-			}
-			StatusManager.GetInstance().SetStatus("");
+		    _img = img;
 			
-			IDAT.compress();
+			// 비동기로 PNG 파일을 인코딩
+			addEventListener(Event.ENTER_FRAME, FrameHandler);			
+			addEventListener(END_OF_ENCODING, EncodeTail);
 			
-			trace("success to compress");
-			
-			writeChunk(png,0x49444154,IDAT);
-			// Build IEND chunk
-			writeChunk(png,0x49454E44,null);
-			// return PNG
-			return png;
 		}
 		
-		private static var crcTable:Array;
-		private static var crcTableComputed:Boolean = false;
+		/**
+		 * 비동기적으로 PNG 파일을 인코딩하기 위해 콜백으로 불려지는 함수 
+		 */
+		private function FrameHandler(event:Event):void
+		{
+			var isComplete:Boolean = false;
+			var endTime:uint = getTimer() + _frameTime;
+			
+			while( !isComplete && endTime > getTimer() )
+			{
+				var i:uint = _lastRow;
+				StatusManager.GetInstance().SetStatus("[PNG Encoding] " + ( i / _img.height * 100).toFixed(2) + "%"); 
+				
+				// no filter
+				_IDAT.writeByte(0);
+				var p:uint;
+				var j:int;
+				
+				if ( !_img.transparent ) 
+				{
+					for(j=0;j < _img.width;j++) 
+					{
+						p = _img.getPixel(j,i);
+						_IDAT.writeUnsignedInt( uint( ((p&0xFFFFFF) << 8) | 0xFF));
+					}
+				} 
+				else 
+				{
+					for(j=0;j < _img.width;j++) 
+					{
+						p = _img.getPixel32(j,i);
+						_IDAT.writeUnsignedInt( uint( ((p&0xFFFFFF) << 8) | 	(p>>>24)));
+					}
+				}
+				
+				if( i == _img.height -1 )
+					isComplete = true;
+				
+				i++;
+				_lastRow = i;
+			}
+			
+			if( isComplete )
+			{
+				dispatchEvent(new Event(END_OF_ENCODING));
+				
+				removeEventListener(Event.ENTER_FRAME, FrameHandler);
+				removeEventListener(END_OF_ENCODING, EncodeTail);
+			}
+		}
 		
-		private static function writeChunk(png:ByteArray, 
-										   type:uint, data:ByteArray):void {
-			if (!crcTableComputed) {
+		private function EncodeTail(event:Event):void
+		{			
+			StatusManager.GetInstance().SetStatus("");
+			
+			_IDAT.compress();
+			
+			writeChunk(_png,0x49444154,_IDAT);
+			
+			// Build IEND chunk
+			writeChunk(_png,0x49454E44,null);
+			
+			_callback(_png);
+			
+			_IHDR.clear();
+			_IHDR = null;
+			_IDAT.clear();
+			_IDAT = null;
+		}
+		
+		private var crcTable:Array;
+		private var crcTableComputed:Boolean = false;
+		
+		private function writeChunk(png:ByteArray, type:uint, data:ByteArray):void 
+		{
+			if (!crcTableComputed) 
+			{
 				crcTableComputed = true;
 				crcTable = [];
 				var c:uint;
-				for (var n:uint = 0; n < 256; n++) {
+				for (var n:uint = 0; n < 256; n++) 
+				{
 					c = n;
-					for (var k:uint = 0; k < 8; k++) {
-						if (c & 1) {
-							c = uint(uint(0xedb88320) ^ 
-								uint(c >>> 1));
-						} else {
+					for (var k:uint = 0; k < 8; k++) 
+					{
+						if (c & 1) 
+						{
+							c = uint(uint(0xedb88320) ^ uint(c >>> 1));
+						} 
+						else 
+						{
 							c = uint(c >>> 1);
 						}
 					}
 					crcTable[n] = c;
 				}
 			}
+			
 			var len:uint = 0;
-			if (data != null) {
+			if (data != null) 
+			{
 				len = data.length;
 			}
+			
 			png.writeUnsignedInt(len);
 			var p:uint = png.position;
 			png.writeUnsignedInt(type);
-			if ( data != null ) {
+			
+			if ( data != null ) 
+			{
 				png.writeBytes(data);
 			}
+			
 			var e:uint = png.position;
 			png.position = p;
 			c = 0xffffffff;
-			for (var i:int = 0; i < (e-p); i++) {
+			
+			for (var i:int = 0; i < (e-p); i++) 
+			{
 				c = uint(crcTable[
 					(c ^ png.readUnsignedByte()) & 
 					uint(0xff)] ^ uint(c >>> 8));
 			}
+			
 			c = uint(c^uint(0xffffffff));
 			png.position = e;
 			png.writeUnsignedInt(c);
