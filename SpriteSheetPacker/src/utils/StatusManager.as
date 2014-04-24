@@ -34,5 +34,10 @@ package utils
 		{
 			_txtField.text = status;
 		}
+		
+		public function set visible(visible:Boolean):void
+		{
+			_txtField.visible = visible;
+		}
 	}
 }

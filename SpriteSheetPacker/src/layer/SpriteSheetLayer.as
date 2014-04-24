@@ -118,6 +118,9 @@ package layer
 		 */
 		private function OnDrawAllBoundary(event:Event):void
 		{
+			if( _sheetInfo == null )
+				return;
+			
 			_sheetInfo.DrawAllBoundary();
 			
 			// 이벤트 리스너 함수 변경			

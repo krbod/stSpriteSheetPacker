@@ -136,6 +136,8 @@ package exporter
 			
 			if( isComplete )
 			{
+				StatusManager.GetInstance().SetStatus("[PNG Encoding] 100%"); 
+				
 				dispatchEvent(new Event(END_OF_ENCODING));
 				
 				removeEventListener(Event.ENTER_FRAME, FrameHandler);
@@ -145,7 +147,7 @@ package exporter
 		
 		private function EncodeTail(event:Event):void
 		{			
-			StatusManager.GetInstance().SetStatus("");
+			StatusManager.GetInstance().visible = false;
 			
 			_IDAT.compress();
 			

@@ -94,7 +94,7 @@ package layer
 		private function InitStatusTextField():void
 		{
 			var format:TextFormat = new TextFormat(); 
-			format.color = 0x336699; 
+			format.color = 0xffffff; 
 			format.size = 32;
 			
 			_statusTextField.autoSize = TextFieldAutoSize.LEFT; 
@@ -102,6 +102,9 @@ package layer
 			_statusTextField.defaultTextFormat = format; 
 			_statusTextField.selectable = false; 
 			_statusTextField.text = "Status Field"; 
+			
+			_statusTextField.background = true;
+			_statusTextField.backgroundColor = 0x000000;
 			
 			_statusTextField.x = stage.fullScreenWidth * STATUS_TXT_POS_X;
 			_statusTextField.y = stage.fullScreenHeight * STATUS_TXT_POS_Y;
