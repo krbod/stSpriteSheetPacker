@@ -70,6 +70,18 @@ package layer
 		 * @param event 마우스 드래그 변화량이 들어있는 이벤트 객체
 		 */
 		private function OnScrollSprite(event:ScrollEvent):void{
+			// 스프라이트 이미지 크기를 넘어서 스크롤을 할 경우에는 안 움직이도록 함
+			if( event.interval[0] > 0 )
+				event.interval[0] = 0;
+			if( event.interval[1] > 0 )
+				event.interval[1] = 0;
+			
+			if( (event.interval[0] * -1 + stage.fullScreenWidth) > _sheetInfo.width )
+				event.interval[0] = (_sheetInfo.width - stage.fullScreenWidth) * -1;				
+			if( (event.interval[1] * -1 + stage.fullScreenHeight ) > _sheetInfo.height )
+				event.interval[1] = (_sheetInfo.height - stage.fullScreenHeight ) * -1;
+					
+			// 스프라이트를 옮김
 			this.x = event.interval[0];
 			this.y = event.interval[1];			
 		}
