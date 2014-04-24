@@ -12,7 +12,7 @@ package utils
 		public function StatusManager()
 		{
 			if (!_creatingSingleton){
-				throw new Error("인스턴스를 생성할 수 없습니다.");
+				throw new Error("[StatusManager] 싱글톤 클래스 - new 연산자를 통해 생성 불가");
 			}
 		}
 		

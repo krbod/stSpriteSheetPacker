@@ -12,6 +12,7 @@ package spriteSheet
 	public class BoundaryHandler
 	{
 		private var _boundary:Shape;		// graphics 객체를 이용해 경계를 나타내기 위한 객체
+		private var _oldSprite:Sprite;
 		
 		public function BoundaryHandler()
 		{
@@ -54,6 +55,18 @@ package spriteSheet
 		 */
 		public function OnClick(event:MouseEvent):void
 		{
+			// 이미지를 다시 클릭할 경우 경계를 지움
+			if( _oldSprite != null && _oldSprite == event.target as Sprite )
+			{
+				_boundary.graphics.clear();
+				_oldSprite = null;
+				return;
+			}
+			else
+			{
+				_oldSprite = event.target as Sprite;
+			}
+			
 			var bmpContainer:Sprite = Sprite(event.target);			
 			var bmp:Bitmap = Bitmap(bmpContainer.getChildAt(0));
 			

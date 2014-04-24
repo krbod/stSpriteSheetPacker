@@ -20,8 +20,7 @@ package
 	import layer.SpriteSheetLayer;
 	import layer.TransparentLayer;
 	import layer.UILayer;
-	
-		
+			
 	public class SpriteSheetPacker extends Sprite
 	{					
 		private var _spriteSheetLayer:SpriteSheetLayer;
