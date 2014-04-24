@@ -2,7 +2,6 @@ package layer
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
 	import exporter.PNGExporter;
 	import exporter.XMLExporter;
@@ -51,7 +50,7 @@ package layer
 		public function AddScrollListener():void
 		{
 			var scrollManager:ScrollManager = new ScrollManager(stage, this);
-			scrollManager.addEventListener(ScrollManager.GET_INTERVAL, OnScrollSprite);
+			scrollManager.addEventListener(ScrollEvent.GET_INTERVAL, OnScrollSprite);
 		}
 
 		/**

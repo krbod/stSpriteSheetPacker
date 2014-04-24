@@ -8,7 +8,6 @@ package utils
 
 	public class ScrollManager extends EventDispatcher
 	{
-		public static const GET_INTERVAL:String = "GET_INTERVAL";
 		
 		private var _beginX:Number, _beginY:Number;	
 		
@@ -43,7 +42,7 @@ package utils
 		private function OnDrag(event:Event):void 
 		{			
 			dispatchEvent(new ScrollEvent(
-				GET_INTERVAL, 
+				ScrollEvent.GET_INTERVAL, 
 				new Array(_stage.mouseX - _beginX, _stage.mouseY - _beginY)
 			));
 		}
