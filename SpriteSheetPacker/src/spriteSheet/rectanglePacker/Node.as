@@ -1,4 +1,4 @@
-package rectanglePacker
+package spriteSheet.rectanglePacker
 {
 	public class Node
 	{

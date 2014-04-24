@@ -4,8 +4,8 @@ package rectanglePacker.test
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
-	import rectanglePacker.RectanglePacker;
-	import rectanglePacker.stRect;
+	import spriteSheet.rectanglePacker.RectanglePacker;
+	import spriteSheet.rectanglePacker.stRect;
 	
 	public class RectanglePackerTester extends Sprite
 	{

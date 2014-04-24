@@ -2,8 +2,8 @@ package spriteSheet
 {
 	import flash.display.Bitmap;
 	
-	import rectanglePacker.RectanglePacker;
-	import rectanglePacker.stRect;
+	import spriteSheet.rectanglePacker.RectanglePacker;
+	import spriteSheet.rectanglePacker.stRect;
 	
 	import spriteSheet.image.ImageFileInfo;
 
@@ -27,6 +27,9 @@ package spriteSheet
 			
 			// 각 이미지들을 넓이를 비교해 정렬
 			imageFileInfoVec.sort(SortWithSize);
+			
+			// 스프라이트 시트 이미지의 추측 최소 사이즈를 구함
+			rectPacker.SetSize(SpeculateMinSize(imageFileInfoVec));
 			
 			for(var i:uint = 0; i<imageFileInfoVec.length; ++i)
 			{
@@ -56,16 +59,9 @@ package spriteSheet
 				bitmapVec.push(bitmap);
 			}
 			
-			// 스프라이트 시트 정보 저장
-			//var spriteSize:int = rectPacker.size();
-			
-//			spriteSheetInfo.width = spriteSize;
-//			spriteSheetInfo.height = spriteSize;
-			
 			spriteSheetInfo.width = rectPacker.spriteWidth;
 			spriteSheetInfo.height = rectPacker.spriteHeight;
-			
-			
+						
 			// 스프라이트 시트에 각각 이미지에 대한 정보를 저장
 			for(var i:uint = 0; i<bitmapVec.length; ++i)
 			{
@@ -86,7 +82,7 @@ package spriteSheet
 		 * @param rhs 비교할 이미지의 ImageFileInfo 객체
 		 * @return 비교후 결과값
 		 */
-		public function SortWithSize(lhs:ImageFileInfo, rhs:ImageFileInfo):int
+		private function SortWithSize(lhs:ImageFileInfo, rhs:ImageFileInfo):int
 		{
 			var size_lhs:int = lhs.bmpData.width * lhs.bmpData.height;
 			var size_rhs:int = rhs.bmpData.width * rhs.bmpData.height;
@@ -103,6 +99,36 @@ package spriteSheet
 			{
 				return 0;
 			}
+		}
+		
+		/**
+		 * 전제 이미지의 넓이를 구해서 최소 스프라이트 시트 사이즈를 추측합니다. 
+		 * @param imageVec 모든 이미지 정보를 포함한 벡터 객체
+		 * @return Array 객체 ( [0] : width, [1] : height )
+		 * 
+		 */
+		private function SpeculateMinSize(imageVec:Vector.<ImageFileInfo>):Array
+		{
+			var totalArea:int; 
+			for(var i:uint = 0; i<imageVec.length; ++i)
+			{
+				totalArea += imageVec[i].bmpData.width * imageVec[i].bmpData.height;
+			}
+			
+			var speculation:Array = [2,2];			
+			while( speculation[0] * speculation[1] < totalArea )
+			{
+				if( speculation[0] == speculation[1] )
+				{
+					speculation[1] *= 2;
+				}
+				else if( speculation[0] < speculation[1] )
+				{
+					speculation[0] *= 2;
+				}
+			}
+						
+			return speculation;
 		}
 		
 	}

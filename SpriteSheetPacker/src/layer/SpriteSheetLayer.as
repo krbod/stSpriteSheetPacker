@@ -70,6 +70,9 @@ package layer
 		 * @param event 마우스 드래그 변화량이 들어있는 이벤트 객체
 		 */
 		private function OnScrollSprite(event:ScrollEvent):void{
+			if( _sheetInfo == null )
+				return;
+			
 			// 스프라이트 이미지 크기를 넘어서 스크롤을 할 경우에는 안 움직이도록 함
 			if( event.interval[0] > 0 )
 				event.interval[0] = 0;

@@ -1,4 +1,4 @@
-package rectanglePacker
+package spriteSheet.rectanglePacker
 {
 	/**
 	 * 새롭게 정의한 Rectangle 객체 

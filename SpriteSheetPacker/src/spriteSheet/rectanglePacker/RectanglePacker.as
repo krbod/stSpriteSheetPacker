@@ -1,4 +1,4 @@
-package rectanglePacker
+package spriteSheet.rectanglePacker
 {
 	public class RectanglePacker
 	{	
@@ -6,16 +6,14 @@ package rectanglePacker
 		
 		private const INITIAL_SIZE:int = 32;
 		
-		private var _canvasWidth:int = INITIAL_SIZE;
-		private var _canvasHeight:int = INITIAL_SIZE;
+		private var _canvasWidth:int;
+		private var _canvasHeight:int;
 		
 		private var _spacing:int;
 		
 		public function RectanglePacker(spacing:int = 0)
 		{			
-			_rootNode = new Node();
-			_rootNode.rect = new stRect(0, 0, _canvasWidth, _canvasHeight);
-			
+			_rootNode = new Node();			
 			_spacing = spacing;
 		}
 		
@@ -120,6 +118,13 @@ package rectanglePacker
 			_rootNode = null;
 		}
 		
+		public function SetSize(size:Array):void
+		{
+			_canvasWidth= size[0];
+			_canvasHeight = size[1];
+			
+			_rootNode.rect = new stRect(0, 0, _canvasWidth, _canvasHeight);
+		}
 		
 		
 		/** Property */
