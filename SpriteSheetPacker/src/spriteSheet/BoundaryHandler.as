@@ -67,8 +67,8 @@ package spriteSheet
 				_oldSprite = event.target as Sprite;
 			}
 			
-			var bmpContainer:Sprite = Sprite(event.target);			
-			var bmp:Bitmap = Bitmap(bmpContainer.getChildAt(0));
+			var bmpContainer:Sprite = event.target as Sprite;			
+			var bmp:Bitmap = bmpContainer.getChildAt(0) as Bitmap;
 			
 			// 이전에 그린 Boundary 를 지움
 			_boundary.graphics.clear();			

@@ -39,7 +39,7 @@ package utils
 		}
 		
 		private function OnDrag(event:Event):void 
-		{			
+		{				
 			dispatchEvent(new ScrollEvent(
 				ScrollEvent.GET_INTERVAL, 
 				new Array(_stage.mouseX - _beginX, _stage.mouseY - _beginY)

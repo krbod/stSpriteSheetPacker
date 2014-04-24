@@ -26,8 +26,17 @@ package layer
 		public function SpriteSheetLayer()
 		{			
 			this.name = Resources.LAYER_NAME_SPRITE_SHEET;
+			
+			addEventListener(Event.ADDED_TO_STAGE, Init);
 		}
 				
+		public function Init(event:Event):void
+		{									
+			// 스프라이트 시트를 스크롤 시킬 수 있도록 설정
+			var scrollManager:ScrollManager = new ScrollManager(this);
+			scrollManager.addEventListener(ScrollEvent.GET_INTERVAL, OnScrollSprite);			
+		}
+		
 		/**
 		 * 폴더 내 이미지를 로드하고 스프라이트 시트를 만든후 출력합니다.<br/> 
 		 * 출력후에는 atlas.xml 과 spritesheet.png 파일을 생성합니다. 
@@ -44,15 +53,6 @@ package layer
 			addEventListener(EVENT_HANDLE_BOUNDARY, OnDrawAllBoundary);
 		}
 		
-		/**
-		 * 스프라이트를 스크롤할 수 있도록 합니다. 
-		 */
-		public function AddScrollListener():void
-		{
-			var scrollManager:ScrollManager = new ScrollManager(this);
-			scrollManager.addEventListener(ScrollEvent.GET_INTERVAL, OnScrollSprite);
-		}
-
 		/**
 		 * 사용한 자원을 해제 합니다. 
 		 */
