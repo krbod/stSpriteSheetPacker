@@ -74,16 +74,41 @@ package layer
 				return;
 			
 			// 스프라이트 이미지 크기를 넘어서 스크롤을 할 경우에는 안 움직이도록 함
-			if( event.interval[0] > 0 )
+			if( event.interval[0] > 0 )			// 우측으로 스크롤 
+			{
 				event.interval[0] = 0;
-			if( event.interval[1] > 0 )
-				event.interval[1] = 0;
+			}
+			else if( event.interval[0] < 0 )	// 좌측으로 스크롤
+			{			
+				// 스프라이트 이미지가 디바이스 보다 작을 경우엔 움직이지 않음
+				if( _sheetInfo.width < stage.fullScreenWidth )  
+				{
+					event.interval[0] = 0;
+				}
+				else if( (event.interval[0] * -1 + stage.fullScreenWidth) > _sheetInfo.width )
+				{
+					event.interval[0] = (_sheetInfo.width - stage.fullScreenWidth) * -1;
+				}
+			}
 			
-			if( (event.interval[0] * -1 + stage.fullScreenWidth) > _sheetInfo.width )
-				event.interval[0] = (_sheetInfo.width - stage.fullScreenWidth) * -1;				
-			if( (event.interval[1] * -1 + stage.fullScreenHeight ) > _sheetInfo.height )
-				event.interval[1] = (_sheetInfo.height - stage.fullScreenHeight ) * -1;
-					
+			if( event.interval[1] > 0 )			// 하단으로 스크롤
+			{
+				event.interval[1] = 0;
+			}
+			else if( event.interval[1] < 0 )	// 상단으로 스크롤
+			{
+				// 스프라이트 이미지가 디바이스 보다 작을 경우엔 움직이지 않음
+				if( _sheetInfo.height < stage.fullScreenHeight )
+				{
+					event.interval[1] = 0;
+				}
+				else if( (event.interval[1] * -1 + stage.fullScreenHeight ) > _sheetInfo.height )
+				{
+					event.interval[1] = (_sheetInfo.height - stage.fullScreenHeight ) * -1;
+				}
+			}
+							
+			
 			// 스프라이트를 옮김
 			this.x = event.interval[0];
 			this.y = event.interval[1];			
