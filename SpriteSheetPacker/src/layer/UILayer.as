@@ -8,7 +8,13 @@ package layer
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
+	import flash.text.AntiAliasType;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFormat;
+	
 	import utils.Resources;
+	import utils.StatusManager;
 	
 	
 	
@@ -21,13 +27,42 @@ package layer
 		private const BOUNDARY_BTN_POS_X:Number = 0.8;
 		private const BOUNDARY_BTN_POS_Y:Number = 0.8;
 		
+		// 상태 텍스트 필드 위치
+		private const STATUS_TXT_POS_X:Number = 0.1;
+		private const STATUS_TXT_POS_Y:Number = 0.85;
+		
 		private var _boundaryButton:Sprite;
+		private var _statusTextField:TextField = new TextField();
 		
 		public function UILayer()
 		{
 			super();
 			
+			addEventListener(Event.ADDED_TO_STAGE, Init);
+		}
+		
+		public function Init(event:Event):void
+		{			
 			// 경계 버튼 이미지를 로드
+			InitBoundaryBtn();
+			
+			// 상태 텍스트 필드를 초기화
+			InitStatusTextField();		
+			
+			// 상태 매니저에 텍스트 필드를 등록
+			StatusManager.GetInstance().SetStatusTextField(_statusTextField);
+		}
+		
+		public function set statusText(status:String):void
+		{
+			_statusTextField.text = status;
+		}
+		
+		/**
+		 * 경계 버튼 이미지를 로드합니다. 
+		 */
+		private function InitBoundaryBtn():void
+		{			
 			var loader:Loader = new Loader();
 			var urlRequest:URLRequest = new URLRequest(Resources.IMAGE_BOUNDARY);
 			loader.load(urlRequest);
@@ -54,6 +89,24 @@ package layer
 			bmp.y = stage.fullScreenHeight * BOUNDARY_BTN_POS_Y;
 			
 			addChild(_boundaryButton);
+		}
+		
+		private function InitStatusTextField():void
+		{
+			var format:TextFormat = new TextFormat(); 
+			format.color = 0x336699; 
+			format.size = 32;
+			
+			_statusTextField.autoSize = TextFieldAutoSize.LEFT; 
+			_statusTextField.antiAliasType = AntiAliasType.ADVANCED; 
+			_statusTextField.defaultTextFormat = format; 
+			_statusTextField.selectable = false; 
+			_statusTextField.text = "Status Field"; 
+			
+			_statusTextField.x = stage.fullScreenWidth * STATUS_TXT_POS_X;
+			_statusTextField.y = stage.fullScreenHeight * STATUS_TXT_POS_Y;
+						
+			addChild(_statusTextField); 
 		}
 		
 		/**

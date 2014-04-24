@@ -34,6 +34,8 @@ package exporter
 	import flash.display.BitmapData;
 	import flash.utils.ByteArray;
 	
+	import utils.StatusManager;
+	
 	/**
 	 * Class that converts BitmapData into a valid PNG
 	 */	
@@ -64,7 +66,9 @@ package exporter
 			// Build IDAT chunk
 			var IDAT:ByteArray= new ByteArray();
 			for(var i:int=0;i < img.height;i++) {
-				trace( ( i / img.height * 100).toFixed(2) + "%");
+				
+				StatusManager.GetInstance().SetStatus("[PNG Encoding] " + ( i / img.height * 100).toFixed(2) + "%"); 
+				
 				// no filter
 				IDAT.writeByte(0);
 				var p:uint;
@@ -84,7 +88,7 @@ package exporter
 					}
 				}
 			}
-			trace("100%");
+			StatusManager.GetInstance().SetStatus("");
 			
 			IDAT.compress();
 			

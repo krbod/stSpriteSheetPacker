@@ -13,6 +13,8 @@ package importer
 	
 	import spriteSheet.image.ImageCustomEvent;
 	import spriteSheet.image.ImageFileInfo;
+	
+	import utils.StatusManager;
 
 	/**
 	 * 지정되어 있는 "in" 폴더 내부에 있는 이미지 파일을 읽어옵니다. <br/>
@@ -96,6 +98,8 @@ package importer
 			{
 				GetBmpData(imageInfo.filePath);
 			}
+			
+			StatusManager.GetInstance().SetStatus("[Image Load] File Count : " + _loadedImageCount );
 			
 		}
 		

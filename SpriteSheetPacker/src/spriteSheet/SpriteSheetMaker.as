@@ -2,10 +2,11 @@ package spriteSheet
 {
 	import flash.display.Bitmap;
 	
+	import spriteSheet.image.ImageFileInfo;
 	import spriteSheet.rectanglePacker.RectanglePacker;
 	import spriteSheet.rectanglePacker.stRect;
 	
-	import spriteSheet.image.ImageFileInfo;
+	import utils.StatusManager;
 
 	/**
 	 * 이미지 정보를 가진 벡터로부터 스프라이트 시트를 제작합니다.
@@ -27,6 +28,8 @@ package spriteSheet
 			
 			// 각 이미지들을 넓이를 비교해 정렬
 			imageFileInfoVec.sort(SortWithSize);
+			
+			StatusManager.GetInstance().SetStatus("Start packing images"); 
 			
 			// 스프라이트 시트 이미지의 추측 최소 사이즈를 구함
 			rectPacker.SetSize(SpeculateMinSize(imageFileInfoVec));

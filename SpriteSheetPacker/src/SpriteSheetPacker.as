@@ -37,7 +37,6 @@ package
 			// 투명 효과를 나타낼 수 있는 배경 레이어 생성
 			var transparentLayer:TransparentLayer = new TransparentLayer();
 			addChild(transparentLayer);
-			transparentLayer.DrawBackground();
 			
 			// 스프라이트 시트 이미지를 출력하는 레이어 생성
 			_spriteSheetLayer = new SpriteSheetLayer();

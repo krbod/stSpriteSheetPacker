@@ -1,6 +1,7 @@
 package layer
 {
 	import flash.display.Sprite;
+	import flash.events.Event;
 	
 	public class TransparentLayer extends Sprite
 	{
@@ -10,12 +11,14 @@ package layer
 		public function TransparentLayer()
 		{
 			super();
+			
+			addEventListener(Event.ADDED_TO_STAGE, DrawBackground);
 		}
 				
 		/**
 		 * PNG 이미지들의 투명 효과를 나타내기 위해 배경화면을 출력합니다.
 		 */
-		public function DrawBackground():void
+		public function DrawBackground(event:Event):void
 		{
 			for(var y:uint = 0; y<stage.fullScreenHeight; y += BACKGROUND_BLOCK_SIZE )
 			{
