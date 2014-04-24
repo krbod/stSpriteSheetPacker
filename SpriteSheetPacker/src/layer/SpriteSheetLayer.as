@@ -49,7 +49,7 @@ package layer
 		 */
 		public function AddScrollListener():void
 		{
-			var scrollManager:ScrollManager = new ScrollManager(stage, this);
+			var scrollManager:ScrollManager = new ScrollManager(this);
 			scrollManager.addEventListener(ScrollEvent.GET_INTERVAL, OnScrollSprite);
 		}
 

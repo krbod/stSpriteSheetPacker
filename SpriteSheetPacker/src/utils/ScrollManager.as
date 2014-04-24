@@ -7,8 +7,7 @@ package utils
 	import flash.events.MouseEvent;
 
 	public class ScrollManager extends EventDispatcher
-	{
-		
+	{		
 		private var _beginX:Number, _beginY:Number;	
 		
 		private var _stage:Stage;
@@ -21,9 +20,9 @@ package utils
 		 * @param stage 어플리케이션 Stage 객체
 		 * @param sprite 드래그 이벤트를 사용할 Sprite 객체		  
 		 */
-		public function ScrollManager(stage:Stage, sprite:Sprite)
+		public function ScrollManager(sprite:Sprite)
 		{
-			_stage = stage;
+			_stage = sprite.stage;
 			_scrollingSprite = sprite;
 			
 			_stage.addEventListener(MouseEvent.MOUSE_DOWN, BeginDrag);
