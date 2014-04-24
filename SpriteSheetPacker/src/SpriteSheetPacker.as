@@ -51,7 +51,6 @@ package
 			
 			// 스프라이트 시트를 스크롤 시킬 수 있도록 설정
 			_spriteSheetLayer.AddScrollListener();
-			
 		}		
 
 

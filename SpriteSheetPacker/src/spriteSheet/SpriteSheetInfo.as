@@ -30,6 +30,9 @@ package spriteSheet
 			_spriteInfoVec = new Vector.<SpriteInfo>;		
 			_spriteSheetSprite = new Sprite();	
 			_boundaryHandler = new BoundaryHandler();			
+			
+			// 스프라이트에 Click 이벤트 등록 
+			_spriteSheetSprite.addEventListener(MouseEvent.CLICK, _boundaryHandler.OnClick);
 		}
 		
 		/**
@@ -44,9 +47,6 @@ package spriteSheet
 			sprite.buttonMode = true;
 			sprite.addChild(bmp);
 			_spriteSheetSprite.addChild(sprite);
-			
-			// 객체에 클릭 이벤트 등록
-			sprite.addEventListener(MouseEvent.CLICK, _boundaryHandler.OnClick);
 			
 			// 스프라이트 정보 생성
 			var spriteInfo:SpriteInfo = new SpriteInfo(bmp.x, bmp.y, 

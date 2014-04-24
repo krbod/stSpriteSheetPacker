@@ -107,6 +107,13 @@ package layer
 			_statusTextField.y = stage.fullScreenHeight * STATUS_TXT_POS_Y;
 						
 			addChild(_statusTextField); 
+			
+			addEventListener(Event.ENTER_FRAME, UpdateStatusField);
+		}
+		
+		private function UpdateStatusField(event:Event):void
+		{
+			_statusTextField.text = _statusTextField.text ;			
 		}
 		
 		/**
