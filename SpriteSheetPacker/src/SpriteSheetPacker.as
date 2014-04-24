@@ -23,8 +23,6 @@ package
 			
 	public class SpriteSheetPacker extends Sprite
 	{					
-		private var _spriteSheetLayer:SpriteSheetLayer;
-		
 		public function SpriteSheetPacker()
 		{
 			super();
@@ -38,20 +36,18 @@ package
 			addChild(transparentLayer);
 			
 			// 스프라이트 시트 이미지를 출력하는 레이어 생성
-			_spriteSheetLayer = new SpriteSheetLayer();
-			addChild(_spriteSheetLayer);						
+			var spriteSheetLayer:SpriteSheetLayer = new SpriteSheetLayer();
+			addChild(spriteSheetLayer);						
 			
 			// UI 레이어 생성
 			var uiLayer:UILayer = new UILayer();
 			addChild(uiLayer);
 						
 			// 폴더 내에 있는 이미지를 불러와 스프라이트 이미지를 생성
-			_spriteSheetLayer.LoadImages();
+			spriteSheetLayer.LoadImages();
 			
 			// 스프라이트 시트를 스크롤 시킬 수 있도록 설정
-			_spriteSheetLayer.AddScrollListener();
-		}		
-
-
+			spriteSheetLayer.AddScrollListener();			
+		}	
 	}
 }
