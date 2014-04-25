@@ -43,6 +43,8 @@ package layer
 		
 		public function Init(event:Event):void
 		{			
+			removeEventListener(Event.ADDED_TO_STAGE, Init);
+			
 			// 경계 버튼 이미지를 로드
 			InitBoundaryBtn();
 			

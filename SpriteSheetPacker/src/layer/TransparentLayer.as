@@ -20,6 +20,8 @@ package layer
 		 */
 		public function DrawBackground(event:Event):void
 		{
+			removeEventListener(Event.ADDED_TO_STAGE, DrawBackground);
+			
 			for(var y:uint = 0; y<stage.fullScreenHeight; y += BACKGROUND_BLOCK_SIZE )
 			{
 				for(var x:uint=0; x<stage.fullScreenWidth; x += BACKGROUND_BLOCK_SIZE)

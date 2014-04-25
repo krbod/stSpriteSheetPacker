@@ -32,6 +32,8 @@ package layer
 				
 		public function Init(event:Event):void
 		{									
+			removeEventListener(Event.ADDED_TO_STAGE, Init);
+			
 			// 스프라이트 시트를 스크롤 시킬 수 있도록 설정
 			var scrollManager:ScrollManager = new ScrollManager(this);
 			scrollManager.addEventListener(ScrollEvent.GET_INTERVAL, OnScrollSprite);			
@@ -107,7 +109,6 @@ package layer
 					event.interval[1] = (_sheetInfo.height - stage.fullScreenHeight ) * -1;
 				}
 			}
-							
 			
 			// 스프라이트를 옮김
 			this.x = event.interval[0];
@@ -136,7 +137,6 @@ package layer
 			xmlExporter = null;
 			pngExporter = null;
 		}
-
 		
 		/**
 		 * 모든 이미지 주변에 경계를 그립니다.
